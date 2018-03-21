@@ -1,0 +1,12 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "outDir": "../../../lib.es2015",
+    "declaration": false,
+    "target": "es2015"
+  },
+  "include": [
+    "../../../src/**/*"
+  ],
+  "extends": "../../../base-tsconfig"
+}
