@@ -1,5 +1,5 @@
 ﻿
-export enum ContentEncoding
+export enum HttpContentEncoding
 {
     utf8 = "utf-8",
 }
@@ -14,6 +14,17 @@ export enum HttpMethod
     connect = "CONNECT",
     options = "OPTIONS",
     patch = "PATCH"
+}
+
+
+export enum HttpResponseType
+{
+    unknown = "",
+    arrayBuffer = "arraybuffer",
+    blob = "blob",
+    document = "document",
+    json = "json",
+    text = "text",
 }
 
 

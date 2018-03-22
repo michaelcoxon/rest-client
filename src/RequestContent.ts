@@ -1,11 +1,11 @@
-﻿import { IRequestContent, IHttpContentHeaderCollection, IHttpRequestHeaderCollection } from "./interfaces/HttpClientInterfaces";
+﻿import { IHttpRequestContent, IHttpContentHeaderCollection, IHttpRequestHeaderCollection } from "./interfaces/HttpClientInterfaces";
 import { HttpContentHeaderCollection } from "./HttpContentHeaderCollection";
 import { KnownContentTypes } from "./interfaces/KnownContentTypes";
-import { ContentEncoding } from "./interfaces/HttpClientEnums";
+import { HttpContentEncoding } from "./interfaces/HttpClientEnums";
 
 
 
-export class EmptyRequestContent implements IRequestContent
+export class EmptyRequestContent implements IHttpRequestContent
 {
     readonly headers: IHttpContentHeaderCollection;
 
@@ -15,7 +15,7 @@ export class EmptyRequestContent implements IRequestContent
         {
             headers.contentType = {
                 contentType: KnownContentTypes.plainText,
-                encoding: ContentEncoding.utf8,
+                encoding: HttpContentEncoding.utf8,
             };
         }
 
@@ -28,7 +28,7 @@ export class EmptyRequestContent implements IRequestContent
     }
 }
 
-export class JsonRequestContent<T> implements IRequestContent
+export class JsonRequestContent<T> implements IHttpRequestContent
 {
     readonly headers: IHttpContentHeaderCollection;
     readonly object: T;
@@ -39,7 +39,7 @@ export class JsonRequestContent<T> implements IRequestContent
 
         headers.contentType = {
             contentType: KnownContentTypes.json,
-            encoding: ContentEncoding.utf8,
+            encoding: HttpContentEncoding.utf8,
         };
 
         this.headers = headers;

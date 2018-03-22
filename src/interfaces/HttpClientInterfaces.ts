@@ -1,13 +1,12 @@
-﻿import { HttpStatusCode, HttpMethod, ContentEncoding } from "./HttpClientEnums";
+﻿import { HttpStatusCode, HttpMethod, HttpContentEncoding, HttpResponseType } from "./HttpClientEnums";
 import { KnownContentTypes } from "./KnownContentTypes";
 
 export type HttpHeaderValue = string | number | string[] | undefined;
 
-
 export interface IContentType
 {
     contentType: KnownContentTypes | string;
-    encoding?: ContentEncoding | string;
+    encoding?: HttpContentEncoding | string;
 }
 
 export interface IHttpHeader
@@ -17,7 +16,7 @@ export interface IHttpHeader
 }
 
 
-export interface IHeaderCollection
+export interface IHttpHeaderCollection
 {
     add(name: string, value: HttpHeaderValue): void;
     addHeader(header: IHttpHeader): void;
@@ -29,19 +28,19 @@ export interface IHeaderCollection
 }
 
 
-export interface IHttpResponseHeaderCollection extends IHeaderCollection
+export interface IHttpResponseHeaderCollection extends IHttpHeaderCollection
 {
-
+    contentType?: IContentType
 }
 
 
-export interface IHttpRequestHeaderCollection extends IHeaderCollection
+export interface IHttpRequestHeaderCollection extends IHttpHeaderCollection
 {
     authorization?: string
 }
 
 
-export interface IHttpContentHeaderCollection extends IHeaderCollection
+export interface IHttpContentHeaderCollection extends IHttpHeaderCollection
 {
     contentType?: IContentType
 }
@@ -78,11 +77,10 @@ export interface IHttpFilter
 
 export interface IHttpResponseContent
 {
-    toString(): string;
-    toObject<T={}>(): T;
+    
 }
 
-export interface IRequestContent
+export interface IHttpRequestContent
 {
     readonly headers: IHttpContentHeaderCollection;
     executeAsync<TResult>(contentWriter: (data?: any) => (TResult | PromiseLike<TResult>)): Promise<TResult>
@@ -95,7 +93,9 @@ export interface IHttpResponse
     readonly status: HttpStatusCode;
     readonly statusText: string;
     readonly headers: IHttpResponseHeaderCollection;
-    readonly content: IHttpResponseContent;
+    readonly contentAsync: Promise<IHttpResponseContent>;
+    readonly response: any;
+    readonly responseType: HttpResponseType;
 }
 
 
@@ -105,7 +105,7 @@ export interface IHttpRequest
     readonly method: HttpMethod;
     readonly uri: string;
 
-    content: IRequestContent;
+    content: IHttpRequestContent;
 
     executeAsync(): Promise<IHttpResponse | undefined>;
 }
@@ -115,4 +115,12 @@ export interface IHttpClient
 {
     readonly filters: IHttpFilter[];
     createRequest(method: HttpMethod, uri: string): IHttpRequest;
+    getObjectAsync<T>(uri: string): Promise<T | undefined>;
+}
+
+
+export interface IHttpResponseContentHandler
+{
+    canHandle(response: IHttpResponse): boolean;
+    handleAsync(response: IHttpResponse): Promise<IHttpResponseContent>;
 }

@@ -1,11 +1,11 @@
 ﻿import { ArgumentException, KeyAlreadyDefinedException } from '@michaelcoxon/utilities';
-import { IHttpHeader, HttpHeaderValue, IHeaderCollection } from "./interfaces/HttpClientInterfaces";
+import { IHttpHeader, HttpHeaderValue, IHttpHeaderCollection } from "./interfaces/HttpClientInterfaces";
 import { KnownHeaderNames } from "./interfaces/KnownHeaderNames";
 
 
 
 
-export class HeaderCollection implements IHeaderCollection
+export class HeaderCollection implements IHttpHeaderCollection
 {
     private readonly _headers: IHttpHeader[];
 

@@ -40,6 +40,7 @@
     <Folder Include="src\config\es6\" />
     <Folder Include="src\interfaces\" />
     <Folder Include="src\helpers\" />
+    <Folder Include="src\response-content\" />
     <Folder Include="src\xhr\" />
     <Folder Include="tests\" />
   </ItemGroup>
@@ -54,6 +55,7 @@
     <TypeScriptCompile Include="src\interfaces\KnownHeaderNames.ts" />
     <TypeScriptCompile Include="src\Exceptions.ts" />
     <TypeScriptCompile Include="src\RequestContent.ts" />
+    <TypeScriptCompile Include="src\response-content\JsonResponseContent.ts" />
     <TypeScriptCompile Include="src\xhr\XhrHttpClient.ts" />
     <TypeScriptCompile Include="src\interfaces\HttpClientEnums.ts" />
     <TypeScriptCompile Include="src\interfaces\HttpClientInterfaces.ts" />
@@ -61,6 +63,7 @@
     <TypeScriptCompile Include="src\HeaderCollection.ts" />
     <TypeScriptCompile Include="src\HttpRequestHeaderCollection.ts" />
     <TypeScriptCompile Include="src\xhr\XhrHttpResponse.ts" />
+    <TypeScriptCompile Include="src\ResponseContentHandlers.ts" />
     <TypeScriptCompile Include="tests\Xhr.spec.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

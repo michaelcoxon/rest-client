@@ -1,10 +1,11 @@
-﻿import { IHttpRequest, IHttpFilter, IHttpRequestHeaderCollection, IHttpResponse, IRequestContent } from "../interfaces/HttpClientInterfaces";
+﻿import { IHttpRequest, IHttpFilter, IHttpRequestHeaderCollection, IHttpResponse, IHttpRequestContent } from "../interfaces/HttpClientInterfaces";
 import { HttpMethod, HttpStatusCode } from "../interfaces/HttpClientEnums";
 import { HttpRequestHeaderCollection } from "../HttpRequestHeaderCollection";
 import { HttpResponseHeaderCollection } from "../HttpResponseHeaderCollection";
 import { KnownHeaderNames } from "../interfaces/KnownHeaderNames";
 import { InvalidOperationException } from "../Exceptions";
 import { EmptyRequestContent } from "../RequestContent";
+import { XhrHttpResponse } from "./XhrHttpResponse";
 
 
 
@@ -22,7 +23,7 @@ export class XhrHttpRequest implements IHttpRequest
     public readonly method: HttpMethod;
     public readonly uri: string;
 
-    public content: IRequestContent;
+    public content: IHttpRequestContent;
 
     constructor(
         method: HttpMethod,
@@ -195,7 +196,7 @@ export class XhrHttpRequest implements IHttpRequest
 
     private _prepareResponse(): IHttpResponse
     {
-
+        return new XhrHttpResponse(this._xhr);
     }
 
     private _prepareErrorResponse(): IHttpResponse
