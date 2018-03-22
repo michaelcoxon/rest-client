@@ -15,6 +15,8 @@
     <EnableTypeScript>true</EnableTypeScript>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <ToolsVersionPromptShown>0.0</ToolsVersionPromptShown>
+    <TypeScriptToolsVersion>2.7</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -37,6 +39,7 @@
     <Folder Include="src\config\es5\" />
     <Folder Include="src\config\es6\" />
     <Folder Include="src\interfaces\" />
+    <Folder Include="src\helpers\" />
     <Folder Include="src\xhr\" />
     <Folder Include="tests\" />
   </ItemGroup>
@@ -44,13 +47,20 @@
     <Compile Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\helpers\HeaderHelpers.ts" />
+    <TypeScriptCompile Include="src\HttpContentHeaderCollection.ts" />
+    <TypeScriptCompile Include="src\HttpResponseHeaderCollection.ts" />
+    <TypeScriptCompile Include="src\interfaces\KnownContentTypes.ts" />
     <TypeScriptCompile Include="src\interfaces\KnownHeaderNames.ts" />
+    <TypeScriptCompile Include="src\Exceptions.ts" />
+    <TypeScriptCompile Include="src\RequestContent.ts" />
     <TypeScriptCompile Include="src\xhr\XhrHttpClient.ts" />
     <TypeScriptCompile Include="src\interfaces\HttpClientEnums.ts" />
     <TypeScriptCompile Include="src\interfaces\HttpClientInterfaces.ts" />
     <TypeScriptCompile Include="src\xhr\XhrHttpRequest.ts" />
     <TypeScriptCompile Include="src\HeaderCollection.ts" />
     <TypeScriptCompile Include="src\HttpRequestHeaderCollection.ts" />
+    <TypeScriptCompile Include="src\xhr\XhrHttpResponse.ts" />
     <TypeScriptCompile Include="tests\Xhr.spec.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

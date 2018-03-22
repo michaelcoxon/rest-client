@@ -1,6 +1,8 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
+    "lib": [ "es6", "es2015", "dom" ],
+
     "outDir": "../../../lib.es2015",
     "declaration": false,
     "target": "es2015"

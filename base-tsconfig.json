@@ -9,7 +9,7 @@
     "sourceMap": true,
     "skipDefaultLibCheck": true,
     "strict": true,
-    "lib": [ "es6", "es2015" ],
+    "lib": [ "es6", "es2015", "dom" ],
     "target": "es5",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

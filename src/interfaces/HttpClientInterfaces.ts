@@ -1,7 +1,14 @@
-﻿import { HttpStatusCode, HttpMethod } from "./HttpClientEnums";
+﻿import { HttpStatusCode, HttpMethod, ContentEncoding } from "./HttpClientEnums";
+import { KnownContentTypes } from "./KnownContentTypes";
 
 export type HttpHeaderValue = string | number | string[] | undefined;
 
+
+export interface IContentType
+{
+    contentType: KnownContentTypes | string;
+    encoding?: ContentEncoding | string;
+}
 
 export interface IHttpHeader
 {
@@ -15,9 +22,10 @@ export interface IHeaderCollection
     add(name: string, value: HttpHeaderValue): void;
     addHeader(header: IHttpHeader): void;
     get(name: string): IHttpHeader | undefined;
+    getAll(): IHttpHeader[];
     remove(name: string): boolean;
     update(name: string, value: HttpHeaderValue): void;
-    getHeaders(): { [name: string]: HttpHeaderValue }
+    toObject(): { [name: string]: HttpHeaderValue }
 }
 
 
@@ -30,6 +38,12 @@ export interface IHttpResponseHeaderCollection extends IHeaderCollection
 export interface IHttpRequestHeaderCollection extends IHeaderCollection
 {
     authorization?: string
+}
+
+
+export interface IHttpContentHeaderCollection extends IHeaderCollection
+{
+    contentType?: IContentType
 }
 
 
@@ -62,18 +76,26 @@ export interface IHttpFilter
 }
 
 
-export interface IHttpResponseBody
+export interface IHttpResponseContent
 {
     toString(): string;
     toObject<T={}>(): T;
 }
 
+export interface IRequestContent
+{
+    readonly headers: IHttpContentHeaderCollection;
+    executeAsync<TResult>(contentWriter: (data?: any) => (TResult | PromiseLike<TResult>)): Promise<TResult>
+}
+
 
 export interface IHttpResponse
 {
+    readonly ok: boolean;
     readonly status: HttpStatusCode;
+    readonly statusText: string;
     readonly headers: IHttpResponseHeaderCollection;
-    readonly body: IHttpResponseBody;
+    readonly content: IHttpResponseContent;
 }
 
 
@@ -82,7 +104,10 @@ export interface IHttpRequest
     readonly headers: IHttpRequestHeaderCollection;
     readonly method: HttpMethod;
     readonly uri: string;
-    executeAsync(): Promise<IHttpResponse>;
+
+    content: IRequestContent;
+
+    executeAsync(): Promise<IHttpResponse | undefined>;
 }
 
 

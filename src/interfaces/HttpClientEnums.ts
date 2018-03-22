@@ -1,4 +1,8 @@
 ﻿
+export enum ContentEncoding
+{
+    utf8 = "utf-8",
+}
 
 export enum HttpMethod
 {

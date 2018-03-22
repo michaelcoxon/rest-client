@@ -13,7 +13,7 @@ export class HeaderCollection implements IHeaderCollection
     {
         if (headers)
         {
-            this._headers = headers;
+            this._headers = [...headers];
         }
         else
         {
@@ -45,6 +45,13 @@ export class HeaderCollection implements IHeaderCollection
         return this._headers.find(i => i.name === name);
     }
 
+    getAll(): IHttpHeader[]
+    {
+        // we make a copy of the internal array so it cannot be modified.
+        // the individual headers in the array are returned by reference however.
+        return [...this._headers];
+    }
+
     remove(name: string): boolean
     {
         const header = this.get(name);
@@ -73,7 +80,7 @@ export class HeaderCollection implements IHeaderCollection
         }
     }
 
-    getHeaders(): { [name: string]: HttpHeaderValue }
+    toObject(): { [name: string]: HttpHeaderValue }
     {
         const result: { [name: string]: HttpHeaderValue; } = {};
 

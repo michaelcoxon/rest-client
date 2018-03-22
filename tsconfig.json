@@ -1,6 +1,8 @@
 {
   "extends": "./base-tsconfig",
-
+  "compilerOptions": {
+    "lib": [ "es6", "es2015", "dom" ]
+  },
   "compileOnSave": false,
   "exclude": [
     "node_modules",
