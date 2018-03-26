@@ -25,7 +25,7 @@ DtsBundlePlugin.prototype.apply = function (compiler)
 
 module.exports = () =>
 {
-    const env = process.env.NODE_ENV.trim();
+    const env = (process.env.NODE_ENV || '').trim();
     const isDevBuild = !(env && env === 'production');
 
     return [{

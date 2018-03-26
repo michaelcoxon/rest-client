@@ -77,7 +77,7 @@ export interface IHttpFilter
 
 export interface IHttpResponseContent
 {
-    
+
 }
 
 export interface IHttpRequestContent
@@ -89,6 +89,7 @@ export interface IHttpRequestContent
 
 export interface IHttpResponse
 {
+    readonly cancelled: boolean;
     readonly ok: boolean;
     readonly status: HttpStatusCode;
     readonly statusText: string;
@@ -96,6 +97,13 @@ export interface IHttpResponse
     readonly contentAsync: Promise<IHttpResponseContent>;
     readonly response: any;
     readonly responseType: HttpResponseType;
+    readonly request: Readonly<IHttpRequest>;
+}
+
+
+export interface IErrorHttpResponse extends IHttpResponse
+{
+    readonly message: string;
 }
 
 

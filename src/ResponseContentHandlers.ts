@@ -15,7 +15,7 @@ export class ResponseContentHandlerCollection
         ResponseContentHandlerCollection._handlers = handlers;
     }
 
-    public static async handleAsync(response: IHttpResponse):Promise< IHttpResponseContent>
+    public static async handleAsync(response: IHttpResponse): Promise<IHttpResponseContent>
     {
         for (const handler of ResponseContentHandlerCollection._handlers)
         {
@@ -70,7 +70,7 @@ export class JsonResponseContentHandler implements IHttpResponseContentHandler
 // -- must be last
 const defaultHandlers: IHttpResponseContentHandler[] =
     [
-
+        new JsonResponseContentHandler()
     ];
 
 ResponseContentHandlerCollection.setHandlers(defaultHandlers);

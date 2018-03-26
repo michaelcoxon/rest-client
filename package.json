@@ -41,7 +41,9 @@
     "npm-run-all": "^4.1.2",
     "ts-node": "^4.0.2",
     "typescript": "^2.7.2",
-    "webpack": "^2.7.0"
+    "webpack": "^2.7.0",
+    "webpack-cyclic-dependency-checker": "0.0.1",
+    "xmlhttprequest": "^1.8.0"
   },
   "-vs-binding": {
     "ProjectOpened": [

@@ -1,6 +1,6 @@
 ﻿import { IHttpClient, IHttpRequest, IHttpFilter } from "../interfaces/HttpClientInterfaces";
 import { HttpMethod } from "../interfaces/HttpClientEnums";
-import { XhrHttpRequest } from "./XhrHttpRequest";
+import { XhrHttpRequest, XhrHttpResponse } from "./XhrHttpRequestResponse";
 import { JsonResponseContent } from "../response-content/JsonResponseContent";
 
 
