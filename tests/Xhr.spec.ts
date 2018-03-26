@@ -76,6 +76,37 @@ describe('XhrHttpClient', () =>
         assert(obj.url === "https://httpbin.org/get");
     });
 
+    it('does basic http get request with basic auth 2', async () =>
+    {
+        const username = 'johndoe';
+        const password = 'password';
+        const authHandler = new BasicAuthenticationFilter(username, password);
+        const url = `https://httpbin.org/basic-auth/${username}/${password}`;
+
+        const httpClient = new XhrHttpClient([authHandler]);
+
+        const response = await httpClient
+            .createRequest(HttpMethod.get, url)
+            .executeAsync();
+
+        if (!response)
+        {
+            throw new Error('request was cancelled');
+        }
+
+        assert(response.status == HttpStatusCode.ok, "status code should be 200");
+        assert(response.ok, "ok should be true");
+
+        const content = (await response.contentAsync) as JsonResponseContent;
+
+        assert(content instanceof JsonResponseContent, "content should be json");
+
+        const obj = content.toObject<{ authenticated: boolean, user: string }>();
+
+        assert(obj.authenticated);
+        assert(obj.user === username);
+    });
+
     it('does basic get request with redirects', async () =>
     {
         const url = "https://httpbin.org/redirect-to?url=" + encodeURIComponent("https://httpbin.org/get");

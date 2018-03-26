@@ -1,0 +1,9 @@
+{
+  "compileOnSave": false,
+  "exclude": [ "node_modules" ],
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [ "dom", "es2015", "es6" ]
+  }
+
+}
