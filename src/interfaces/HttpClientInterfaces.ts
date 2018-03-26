@@ -6,7 +6,7 @@ export type HttpHeaderValue = string | number | string[] | undefined;
 export interface IContentType
 {
     contentType: KnownContentTypes | string;
-    encoding?: HttpContentEncoding | string;
+    encoding: HttpContentEncoding | string | undefined;
 }
 
 export interface IHttpHeader
@@ -30,19 +30,19 @@ export interface IHttpHeaderCollection
 
 export interface IHttpResponseHeaderCollection extends IHttpHeaderCollection
 {
-    contentType?: IContentType
+    contentType: IContentType | undefined
 }
 
 
 export interface IHttpRequestHeaderCollection extends IHttpHeaderCollection
 {
-    authorization?: string
+    authorization: string | undefined
 }
 
 
 export interface IHttpContentHeaderCollection extends IHttpHeaderCollection
 {
-    contentType?: IContentType
+    contentType: IContentType | undefined
 }
 
 
@@ -65,13 +65,13 @@ export interface IHttpFilter
      * @param response the response
      * @returns Returns true if the response should be cancelled.
      */
-    handleResponse(response: IHttpResponse): boolean | undefined;
+    handleResponse(response: IHttpResponse): boolean | void;
     /**
     * handles the request
     * @param request the request
     * @returns Returns true if the request should be cancelled.
     */
-    handleRequest(request: IHttpRequest): boolean | undefined;
+    handleRequest(request: IHttpRequest): boolean | void;
 }
 
 

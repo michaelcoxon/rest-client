@@ -1,5 +1,5 @@
 ﻿import { IContentType } from "../interfaces/HttpClientInterfaces";
-
+import { Strings } from '@michaelcoxon/utilities';
 
 
 export namespace HeaderHelpers
@@ -23,13 +23,21 @@ export namespace HeaderHelpers
     {
         if (strContentType)
         {
-            const [mediaType, charset] = strContentType.split(';');
+            const [mediaType, charset] = strContentType.split(';')
+                .map(i => Strings.trim(i))
+                .filter(i => !Strings.isNullOrEmpty(i));
 
-            let contentType: IContentType = { contentType: mediaType };
+            let contentType: IContentType = {
+                contentType: mediaType,
+                encoding: undefined
+            };
 
             if (charset)
             {
-                const [name, value] = strContentType.split('=');
+                const [name, value] = strContentType.split('=')
+                    .map(i => Strings.trim(i))
+                    .filter(i => !Strings.isNullOrEmpty(i));
+
                 contentType.encoding = value;
             }
 

@@ -151,22 +151,22 @@ export class XhrHttpRequest implements IHttpRequest
      */
     private _applyFilters(): boolean
     {
-        let cancel = false;
+        let notCancel = true;
 
         for (const filter of this._filters)
         {
             if (filter.canHandleRequest(this))
             {
-                cancel = cancel && (filter.handleRequest(this) || false);
+                notCancel = notCancel && (!filter.handleRequest(this) || true);
             }
 
-            if (cancel)
+            if (!notCancel)
             {
                 break;
             }
         }
 
-        return cancel;
+        return !notCancel;
     }
 
     private _setHeaders(): void
@@ -303,24 +303,23 @@ export class XhrHttpResponse implements IHttpResponse
      */
     private _applyFilters(): boolean
     {
-        let cancel = false;
+        let notCancel = true;
 
         for (const filter of this._filters)
         {
             if (filter.canHandleResponse(this))
             {
-                cancel = cancel && (filter.handleResponse(this) || false);
+                notCancel = notCancel && (!filter.handleResponse(this) || true);
             }
 
-            if (cancel)
+            if (!notCancel)
             {
                 break;
             }
         }
 
-        return cancel;
+        return !notCancel;
     }
-
 
     private static _createHttpResponseHeaderCollection(xhrHeaders: string): IHttpResponseHeaderCollection
     {

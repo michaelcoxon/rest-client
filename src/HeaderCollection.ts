@@ -42,7 +42,7 @@ export class HeaderCollection implements IHttpHeaderCollection
 
     get(name: string): IHttpHeader | undefined
     {
-        return this._headers.find(i => i.name === name);
+        return this._headers.find(i => i.name.toLowerCase() === name.toLowerCase());
     }
 
     getAll(): IHttpHeader[]
@@ -77,6 +77,10 @@ export class HeaderCollection implements IHttpHeaderCollection
             {
                 this.remove(name);
             }
+        }
+        else
+        {
+            this.add(name, value);
         }
     }
 

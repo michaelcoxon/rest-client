@@ -44,6 +44,7 @@
     <Folder Include="src\config\es6\" />
     <Folder Include="src\interfaces\" />
     <Folder Include="src\helpers\" />
+    <Folder Include="src\filters\" />
     <Folder Include="src\response-content\" />
     <Folder Include="src\xhr\" />
     <Folder Include="tests\" />
@@ -53,6 +54,7 @@
     <Compile Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\filters\BasicAuthenticationFilter.ts" />
     <TypeScriptCompile Include="src\helpers\HeaderHelpers.ts" />
     <TypeScriptCompile Include="src\HttpContentHeaderCollection.ts" />
     <TypeScriptCompile Include="src\HttpResponseHeaderCollection.ts" />
