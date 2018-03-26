@@ -6,10 +6,12 @@
   "module": "lib.2015/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "version": "npm -v && node -v",
     "run-tests": "mocha -r ts-node/register tests/**/*.spec.ts",
     "test": "npm-run-all -s build-dev build-prod -p run-tests",
     "build-dev": "SET NODE_ENV=development&& webpack --no-color",
     "build-prod": "SET NODE_ENV=production&& webpack --no-color",
+    "build-tests": "webpack --config ./webpack.config.tests.js --display-error-details",
     "prepack": "npm-run-all -s test"
   },
   "repository": {

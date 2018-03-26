@@ -43,7 +43,7 @@ module.exports = () =>
                 {
                     test: /\.ts$/,
                     include: /src/,
-                    use: 'awesome-typescript-loader'
+                    use: 'awesome-typescript-loader?configFileName=./src/config/es5/tsconfig.json'
                 }
             ]
         },

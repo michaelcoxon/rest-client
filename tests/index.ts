@@ -1,6 +1,6 @@
 ﻿import 'mocha';
 
-(<any>mocha).setup('bdd')
+(mocha as any).setup('bdd')
 
 import './Xhr.spec';
 

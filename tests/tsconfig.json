@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "noImplicitAny": false,
-    "module": "es2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "noEmitOnError": true,
     "removeComments": false,
@@ -13,12 +13,13 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "pretty": true,
-    "paths": {
+    /*"paths": {
       "../src/*": ["../lib.es2015"]
-    },
-    //"outDir": "../tests/tests.bundle.js",
-    "target": "es2015"
+    },*/
+    "outDir": "../tests/lib",
+    "target": "es5"
   },
   "include": [ "../tests/**/*.spec.ts" ],
-  "compileOnSave": true
+  //"exclude": [ "../node_modules" ],
+  "compileOnSave": false
 }
