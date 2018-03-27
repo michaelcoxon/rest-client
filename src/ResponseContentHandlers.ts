@@ -1,7 +1,7 @@
 ﻿import { IHttpResponseContentHandler, IHttpResponse, IHttpResponseContent } from "./interfaces/HttpClientInterfaces";
 import { ArgumentException } from "@michaelcoxon/utilities";
 import { KnownContentTypes } from "./interfaces/KnownContentTypes";
-import { JsonResponseContent } from "./response-content/JsonResponseContent";
+import { JsonResponseContent } from "./ResponseContent";
 import { HttpResponseType } from "./interfaces/HttpClientEnums";
 
 
@@ -19,7 +19,7 @@ export class ResponseContentHandlerCollection
     {
         for (const handler of ResponseContentHandlerCollection._handlers)
         {
-            if (handler.canHandle(response))
+            if (await handler.canHandleAsync(response))
             {
                 return await handler.handleAsync(response);
             }
@@ -30,7 +30,7 @@ export class ResponseContentHandlerCollection
 
 export class JsonResponseContentHandler implements IHttpResponseContentHandler
 {
-    canHandle(response: IHttpResponse): boolean
+    public async canHandleAsync(response: IHttpResponse): Promise<boolean>
     {
         // if the responseTyoe is set we can be pretty sure this is ok
         if (response.responseType == HttpResponseType.json)

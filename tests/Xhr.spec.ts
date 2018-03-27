@@ -7,7 +7,7 @@ import 'mocha';
 import { XhrHttpClient } from '../src/xhr/XhrHttpClient';
 import { BasicAuthenticationFilter } from '../src/filters/BasicAuthenticationFilter';
 import { HttpMethod, HttpStatusCode } from '../src/interfaces/HttpClientEnums';
-import { JsonResponseContent } from '../src/response-content/JsonResponseContent';
+import { JsonResponseContent } from '../src/ResponseContent';
 import { JsonRequestContent, StringRequestContent } from '../src/RequestContent';
 
 //(<any>global).XMLHttpRequest = xhrm.XMLHttpRequest

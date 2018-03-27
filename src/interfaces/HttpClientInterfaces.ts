@@ -53,25 +53,25 @@ export interface IHttpFilter
      * @param response the response
      * @returns Returns true if the filter can handle the response
      */
-    canHandleResponse(response: IHttpResponse): boolean;
+    canHandleResponseAsync(response: IHttpResponse): Promise<boolean>;
     /**
     * determin if this filter can handle the request
     * @param request the request
     * @returns Returns true if the filter can handle the request
     */
-    canHandleRequest(request: IHttpRequest): boolean;
+    canHandleRequestAsync(request: IHttpRequest): Promise<boolean>;
     /**
      * handles the response
      * @param response the response
      * @returns Returns true if the response should be cancelled.
      */
-    handleResponse(response: IHttpResponse): boolean | void;
+    handleResponseAsync(response: IHttpResponse): Promise<boolean | void>;
     /**
     * handles the request
     * @param request the request
     * @returns Returns true if the request should be cancelled.
     */
-    handleRequest(request: IHttpRequest): boolean | void;
+    handleRequestAsync(request: IHttpRequest): Promise<boolean | void>;
 }
 
 
@@ -98,6 +98,7 @@ export interface IHttpResponse
     readonly response: any;
     readonly responseType: HttpResponseType;
     readonly request: Readonly<IHttpRequest>;
+    executeAsync(request: IHttpRequest): Promise<void>;
 }
 
 
@@ -129,6 +130,6 @@ export interface IHttpClient
 
 export interface IHttpResponseContentHandler
 {
-    canHandle(response: IHttpResponse): boolean;
+    canHandleAsync(response: IHttpResponse): Promise<boolean>;
     handleAsync(response: IHttpResponse): Promise<IHttpResponseContent>;
 }

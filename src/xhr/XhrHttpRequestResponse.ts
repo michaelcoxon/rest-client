@@ -5,10 +5,10 @@ import { HttpResponseHeaderCollection } from "../HttpResponseHeaderCollection";
 import { KnownHeaderNames } from "../interfaces/KnownHeaderNames";
 import { InvalidOperationException } from "../Exceptions";
 import { EmptyRequestContent } from "../RequestContent";
-import { Lazy, LazyAsync, Strings, NotSupportedException } from "@michaelcoxon/utilities";
+import { Lazy, LazyAsync, Strings, NotSupportedException, ArgumentException } from "@michaelcoxon/utilities";
 import { ResponseContentHandlerCollection } from "../ResponseContentHandlers";
 
-
+const MUST_EXECUTE_RESPONSE_FIRST_MESSAGE = "Must execute response first";
 
 export class XhrHttpRequest implements IHttpRequest
 {
@@ -81,21 +81,27 @@ export class XhrHttpRequest implements IHttpRequest
             try
             {
                 // prepare the request
-                this._prepareRequest();
+                await this._prepareRequestAsync();
 
                 this.xhr.onload = evt =>
                 {
-                    resolve(this._prepareResponse());
+                    const response = this._prepareResponse();
+                    response.executeAsync(this);
+                    resolve(response);
                 };
 
                 this.xhr.onerror = evt =>
                 {
-                    resolve(this._prepareErrorResponse());
+                    const response = this._prepareErrorResponse();
+                    response.executeAsync(this);
+                    resolve(response);
                 };
 
                 this.xhr.ontimeout = evt =>
                 {
-                    resolve(this._prepareTimeoutResponse());
+                    const response = this._prepareTimeoutResponse();
+                    response.executeAsync(this);
+                    resolve(response);
                 };
 
                 let sent = false;
@@ -118,7 +124,7 @@ export class XhrHttpRequest implements IHttpRequest
         });
     }
 
-    private _prepareRequest(): void
+    private async _prepareRequestAsync(): Promise<void>
     {
         if (this._prepared)
         {
@@ -133,7 +139,7 @@ export class XhrHttpRequest implements IHttpRequest
             this.content = new EmptyRequestContent();
         }
 
-        this._cancelled = this._applyFilters();
+        this._cancelled = await this._applyFiltersAsync();
 
         // if we cancelled the request then lets bail out here
         if (!this._cancelled)
@@ -149,15 +155,15 @@ export class XhrHttpRequest implements IHttpRequest
      * applies the filters to the request
      * @returns true if the request should be cancelled.
      */
-    private _applyFilters(): boolean
+    private async _applyFiltersAsync(): Promise<boolean>
     {
         let notCancel = true;
 
         for (const filter of this._filters)
         {
-            if (filter.canHandleRequest(this))
+            if (await filter.canHandleRequestAsync(this))
             {
-                notCancel = notCancel && (!filter.handleRequest(this) || true);
+                notCancel = notCancel && (!(await filter.handleRequestAsync(this)) || true);
             }
 
             if (!notCancel)
@@ -202,17 +208,17 @@ export class XhrHttpRequest implements IHttpRequest
 
     private _prepareResponse(): XhrHttpResponse
     {
-        return new XhrHttpResponse(this, this._filters);
+        return new XhrHttpResponse(this._filters);
     }
 
     private _prepareErrorResponse(): XhrHttpResponse
     {
-        return new XhrErrorHttpResponse('There was a problem with the request', this, this._filters);
+        return new XhrErrorHttpResponse('There was a problem with the request', this._filters);
     }
 
     private _prepareTimeoutResponse(): XhrHttpResponse
     {
-        return new XhrErrorHttpResponse(`The request timed out after ${this._timeout} seconds`, this, this._filters);
+        return new XhrErrorHttpResponse(`The request timed out after ${this._timeout} seconds`, this._filters);
     }
 }
 
@@ -220,36 +226,33 @@ export class XhrHttpRequest implements IHttpRequest
 
 export class XhrHttpResponse implements IHttpResponse
 {
-    private readonly _request: XhrHttpRequest;
     private readonly _filters: IHttpFilter[];
 
     private _cancelled: boolean;
+    private _request?: XhrHttpRequest;
 
-    private readonly _lazyOk: Lazy<boolean>;
-    private readonly _lazyStatus: Lazy<HttpStatusCode>;
-    private readonly _lazyStatusText: Lazy<string>;
-    private readonly _lazyHeaders: Lazy<IHttpResponseHeaderCollection>;
-    private readonly _lazyContentAsync: LazyAsync<IHttpResponseContent>;
-    private readonly _lazyresponse: Lazy<any>;
-    private readonly _lazyresponseType: Lazy<HttpResponseType>;
+    private _lazyOk: Lazy<boolean>;
+    private _lazyStatus: Lazy<HttpStatusCode>;
+    private _lazyStatusText: Lazy<string>;
+    private _lazyHeaders: Lazy<IHttpResponseHeaderCollection>;
+    private _lazyContentAsync: LazyAsync<IHttpResponseContent>;
+    private _lazyresponse: Lazy<any>;
+    private _lazyresponseType: Lazy<HttpResponseType>;
 
-    constructor(request: XhrHttpRequest, filters: IHttpFilter[] = [])
+    constructor(filters: IHttpFilter[] = [])
     {
-        this._request = request;
         this._filters = filters;
-
         this._cancelled = false;
 
-        this._lazyOk = new Lazy<boolean>(() => request.xhr.status >= 200 && request.xhr.status < 300);
-        this._lazyStatus = new Lazy<HttpStatusCode>(() => request.xhr.status);
-        this._lazyStatusText = new Lazy<string>(() => request.xhr.statusText);
-        this._lazyHeaders = new Lazy<IHttpResponseHeaderCollection>(() => XhrHttpResponse._createHttpResponseHeaderCollection(request.xhr.getAllResponseHeaders()));
-        this._lazyContentAsync = new LazyAsync<IHttpResponseContent>(async () => await ResponseContentHandlerCollection.handleAsync(this));
-        this._lazyresponse = new Lazy<any>(() => request.xhr.response);
-        this._lazyresponseType = new Lazy<HttpResponseType>(() => XhrHttpResponse._mapResponseType(request.xhr.responseType));
+        const lazyException = new Lazy(() => { throw new InvalidOperationException(MUST_EXECUTE_RESPONSE_FIRST_MESSAGE) });
 
-        // must be last
-        this._cancelled = this._applyFilters();
+        this._lazyOk = lazyException;
+        this._lazyStatus = lazyException;
+        this._lazyStatusText = lazyException;
+        this._lazyHeaders = lazyException;
+        this._lazyresponse = lazyException;
+        this._lazyresponseType = lazyException;
+        this._lazyContentAsync = new LazyAsync(async () => { throw new InvalidOperationException(MUST_EXECUTE_RESPONSE_FIRST_MESSAGE) });
     }
 
     get cancelled(): boolean
@@ -259,6 +262,10 @@ export class XhrHttpResponse implements IHttpResponse
 
     public get request(): Readonly<IHttpRequest>
     {
+        if (!this._request)
+        {
+            throw new InvalidOperationException(MUST_EXECUTE_RESPONSE_FIRST_MESSAGE);
+        }
         return this._request;
     }
 
@@ -297,19 +304,39 @@ export class XhrHttpResponse implements IHttpResponse
         return this._lazyOk.value;
     }
 
+    public async executeAsync(request: IHttpRequest): Promise<void>
+    {
+        if (!(request instanceof XhrHttpRequest))
+        {
+            throw new ArgumentException('request', 'request must be of type XhrHttpRequest');
+        }
+
+        this._request = request;
+
+        this._lazyOk = new Lazy<boolean>(() => request.xhr.status >= 200 && request.xhr.status < 300);
+        this._lazyStatus = new Lazy<HttpStatusCode>(() => request.xhr.status);
+        this._lazyStatusText = new Lazy<string>(() => request.xhr.statusText);
+        this._lazyHeaders = new Lazy<IHttpResponseHeaderCollection>(() => XhrHttpResponse._createHttpResponseHeaderCollection(request.xhr.getAllResponseHeaders()));
+        this._lazyresponse = new Lazy<any>(() => request.xhr.response);
+        this._lazyresponseType = new Lazy<HttpResponseType>(() => XhrHttpResponse._mapResponseType(request.xhr.responseType));
+        this._lazyContentAsync = new LazyAsync<IHttpResponseContent>(async () => await ResponseContentHandlerCollection.handleAsync(this));
+
+        this._cancelled = await this._applyFiltersAsync();
+    }
+
     /** 
      * applies the filters to the response
      * @returns true if the response should be cancelled.
      */
-    private _applyFilters(): boolean
+    private async _applyFiltersAsync(): Promise<boolean>
     {
         let notCancel = true;
 
         for (const filter of this._filters)
         {
-            if (filter.canHandleResponse(this))
+            if (await filter.canHandleResponseAsync(this))
             {
-                notCancel = notCancel && (!filter.handleResponse(this) || true);
+                notCancel = notCancel && (!(await filter.handleResponseAsync(this)) || true);
             }
 
             if (!notCancel)
@@ -354,9 +381,9 @@ export class XhrErrorHttpResponse extends XhrHttpResponse implements IErrorHttpR
 {
     public readonly message: string;
 
-    constructor(message: string, request: XhrHttpRequest, filters: IHttpFilter[])
+    constructor(message: string, filters: IHttpFilter[])
     {
-        super(request, filters);
+        super(filters);
         this.message = message;
     }
 }

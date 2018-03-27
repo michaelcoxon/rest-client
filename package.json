@@ -1,6 +1,6 @@
 {
   "name": "@michaelcoxon/rest-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple REST client.",
   "main": "dist/index.js",
   "module": "lib.2015/index.js",
@@ -11,8 +11,7 @@
     "test": "npm-run-all -s build-dev build-prod -p run-tests",
     "build-dev": "SET NODE_ENV=development&& webpack --no-color",
     "build-prod": "SET NODE_ENV=production&& webpack --no-color",
-    "build-tests": "webpack --config ./webpack.config.tests.js --display-error-details",
-    "prepack": "npm-run-all -s test"
+    "build-tests": "webpack --config ./webpack.config.tests.js --display-error-details"
   },
   "repository": {
     "type": "git",

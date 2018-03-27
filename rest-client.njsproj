@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{4ccd470b-0d35-45bc-9f89-90aa96f7cba9}</ProjectGuid>
     <ProjectHome />
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <StartupFile>
     </StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
@@ -46,7 +46,6 @@
     <Folder Include="src\interfaces\" />
     <Folder Include="src\helpers\" />
     <Folder Include="src\filters\" />
-    <Folder Include="src\response-content\" />
     <Folder Include="src\xhr\" />
     <Folder Include="tests\" />
   </ItemGroup>
@@ -64,7 +63,7 @@
     <TypeScriptCompile Include="src\interfaces\KnownHeaderNames.ts" />
     <TypeScriptCompile Include="src\Exceptions.ts" />
     <TypeScriptCompile Include="src\RequestContent.ts" />
-    <TypeScriptCompile Include="src\response-content\JsonResponseContent.ts" />
+    <TypeScriptCompile Include="src\ResponseContent.ts" />
     <TypeScriptCompile Include="src\Url.ts" />
     <TypeScriptCompile Include="src\xhr\XhrHttpClient.ts" />
     <TypeScriptCompile Include="src\interfaces\HttpClientEnums.ts" />

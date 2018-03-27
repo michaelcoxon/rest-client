@@ -10,26 +10,24 @@ export class BasicAuthenticationFilter implements IHttpFilter
         this._authHeaderValue = btoa(`${username}:${password}`);
     }
 
-    canHandleResponse(response: IHttpResponse): boolean
+    public async canHandleResponseAsync(response: IHttpResponse): Promise<boolean>
     {
         return false;
     }
 
-    canHandleRequest(request: IHttpRequest): boolean
+    public async canHandleRequestAsync(request: IHttpRequest): Promise<boolean>
     {
         return true;
     }
 
-    handleResponse(response: IHttpResponse): boolean | void
+    public async handleResponseAsync(response: IHttpResponse): Promise<boolean | void>
     {
         throw new Error("Method not implemented.");
     }
 
-    handleRequest(request: IHttpRequest): boolean | void
+    public async handleRequestAsync(request: IHttpRequest): Promise<boolean | void>
     {
         request.headers.authorization = `Basic ${this._authHeaderValue}`;
         request.headers.update('X-TFS-FedAuthRedirect', 'Suppress');
     }
-
-    private _isAuthenticationRequest
 }

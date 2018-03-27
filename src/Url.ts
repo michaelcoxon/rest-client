@@ -1,6 +1,6 @@
 ﻿import { NotSupportedException, Strings } from "@michaelcoxon/utilities";
 
-type StringOrUrl = Url | string;
+export type StringOrUrl = Url | string;
 
 export function stringOrUrlToUrl(stringOrUrl: StringOrUrl): Url
 {

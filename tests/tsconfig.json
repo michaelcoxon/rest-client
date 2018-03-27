@@ -13,13 +13,9 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "pretty": true,
-    /*"paths": {
-      "../src/*": ["../lib.es2015"]
-    },*/
     "outDir": "../tests/lib",
     "target": "es5"
   },
   "include": [ "../tests/**/*.spec.ts" ],
-  //"exclude": [ "../node_modules" ],
   "compileOnSave": true
 }
