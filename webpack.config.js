@@ -38,6 +38,9 @@ module.exports = () =>
             library: libraryName,
             libraryTarget: 'umd'
         },
+        externals: [
+            /^@michaelcoxon\/utilities.*$/
+        ],
         module: {
             rules: [
                 {

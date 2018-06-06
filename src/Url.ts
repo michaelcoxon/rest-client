@@ -1,4 +1,6 @@
 ﻿import { NotSupportedException, Strings } from "@michaelcoxon/utilities";
+import { QueryStringHelper } from "./helpers/QueryStringHelper";
+import { QueryStringItem } from "./Types";
 
 export type StringOrUrl = Url | string;
 
@@ -14,10 +16,16 @@ export function stringOrUrlToUrl(stringOrUrl: StringOrUrl): Url
     }
 }
 
-export interface IQueryStringItem
+export function stringOrUrlToString(stringOrUrl: StringOrUrl): string
 {
-    readonly name: string;
-    readonly value: any;
+    if (stringOrUrl instanceof Url)
+    {
+        return stringOrUrl.toString();
+    }
+    else
+    {
+        return stringOrUrl;
+    }
 }
 
 export class Url
@@ -25,36 +33,34 @@ export class Url
     private _url: string;
     private _query: QueryStringCollection;
 
-    constructor(baseUrl: string, relativeUrl?: string)
+    constructor(baseUrl: StringOrUrl, queryStringObject?: { [key: string]: any })
     {
-        this._url = baseUrl;
-        this._query = new QueryStringCollection();
-        if (relativeUrl)
-        {
-            this.modify(relativeUrl);
-        }
-    }
+        const [url, query] = stringOrUrlToString(baseUrl).split('?', 2);
+        this._url = url;
 
-    public modify(relativeUrl: string): void
-    {
-        if (relativeUrl.startsWith('/'))
+        if (query === undefined)
         {
-            this._modifyRootRelativeUrl(relativeUrl);
-        }
-        else if (relativeUrl.startsWith('.'))
-        {
-            this._modifyPathChangeRelativeUrl(relativeUrl);
+            this._query = new QueryStringCollection();
         }
         else
         {
-            const lastSlash = this._url.lastIndexOf('/');
-            this._url = this._url.substr(lastSlash) + relativeUrl;
+            this._query = QueryStringCollection.createFromQueryString(query);
+        }
+
+        if (queryStringObject !== undefined)
+        {
+            this._query = QueryStringCollection.merge(this._query, QueryStringCollection.createFromObject(queryStringObject));
         }
     }
 
     public get query(): QueryStringCollection
     {
-        return this.query;
+        return this._query;
+    }
+
+    public set query(value: QueryStringCollection)
+    {
+        this._query = value;
     }
 
     public toString(): string
@@ -66,86 +72,59 @@ export class Url
     {
         return this.toString();
     }
-
-
-
-    private _modifyPathChangeRelativeUrl(relativeUrl: any): any
-    {
-        throw new Error("Method not implemented.");
-    }
-
-    private _modifyRootRelativeUrl(relativeUrl: any): any
-    {
-        throw new Error("Method not implemented.");
-    }
 }
 
 
 export class QueryStringCollection
 {
-    private readonly _items: IQueryStringItem[];
+    private readonly _items: QueryStringItem[];
 
-    constructor(items: IQueryStringItem[] = [])
+    constructor(items: QueryStringItem[] = [])
     {
         this._items = items;
     }
 
-    public get items(): IQueryStringItem[]
+    public get items(): QueryStringItem[]
     {
         return this._items;
     }
 
-    public item<T=any>(name: string): T | undefined
+    public item(name: string): any | undefined
     {
-        const item = this.items.find(i => i.name === name);
-        if (item)
+        const items = this.items.filter(i => i.name === name);
+        if (items.length > 1)
         {
-            return item.value as T;
+            return items.map(i => i.value);
+        }
+        else if (items.length > 0)
+        {
+            return items[0].value;
         }
     }
 
     public toObject(): { [name: string]: any }
     {
-        const ret: { [name: string]: any } = {};
-
-        for (const item of this.items)
-        {
-            ret[item.name] = item.value;
-        }
-
-        return ret;
+        return QueryStringHelper.convertToObject(this._items);
     }
 
     public toString(): string
     {
-        const value = Strings.trimEnd(this.items.reduce((a, c) => `${c.name}=${c.value}&`, ""), '&');
-        return `?${value}`;
+        return QueryStringHelper.serializeQueryStringItems(this._items, true);
+    }
+
+    public static merge(...queryStringCollections: QueryStringCollection[]): QueryStringCollection
+    {
+        return QueryStringCollection.createFromObject(Object.assign({}, ...queryStringCollections.map(qsc => qsc.toObject())));
     }
 
     public static createFromQueryString(queryString: string)
     {
-        let query = queryString;
-        if (query.startsWith('?'))
-        {
-            query = query.substr(1);
-        }
+        return new QueryStringCollection(QueryStringHelper.deserialize(queryString));
+    }
 
-        return new QueryStringCollection(
-            query
-                .split('&')
-                .map<IQueryStringItem>(i =>
-                {
-                    const [name, value] = i.split('=', 2);
-                    if (name.indexOf('[') > -1)
-                    {
-                        throw new NotSupportedException('Arrays and objects in queries are not supported');
-                    }
-                    return {
-                        name: name,
-                        value: value,
-                    };
-                })
-        );
+    public static createFromObject(queryStringObject: { [key: string]: any })
+    {
+        return new QueryStringCollection(QueryStringHelper.convertObject(queryStringObject));
     }
 }
 

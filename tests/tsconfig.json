@@ -13,9 +13,9 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "pretty": true,
-    "outDir": "../tests/lib",
     "target": "es5"
   },
   "include": [ "../tests/**/*.spec.ts" ],
+  "exclude": [ "src/index.ts" ],
   "compileOnSave": true
 }

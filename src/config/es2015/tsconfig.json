@@ -22,5 +22,6 @@
 
     "traceResolution": true
   },
-  "include": ["../../**/*"]
+  "include": [ "../../**/*" ],
+  "exclude": [ "src/index.ts" ]
 }
