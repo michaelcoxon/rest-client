@@ -7,6 +7,7 @@ const bundleOutputDir = './tests/dist';
 module.exports = () =>
 {
     return [{
+        mode: 'development',
         entry: { 'index': `./tests/index.ts` },
         resolve: { extensions: ['.ts','.js'] },
         output: {

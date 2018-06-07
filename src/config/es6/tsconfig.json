@@ -14,7 +14,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "pretty": true,
-
+    "importHelpers":true,
     "outDir": "../../../lib.es6",
     "declaration": false,
     "target": "es6"

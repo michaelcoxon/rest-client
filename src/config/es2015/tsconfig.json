@@ -15,7 +15,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "pretty": true,
-
+    "importHelpers":true,
     "outDir": "../../../lib.es2015",
     "declaration": false,
     "target": "es2015",
