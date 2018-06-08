@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{4ccd470b-0d35-45bc-9f89-90aa96f7cba9}</ProjectGuid>
     <ProjectHome />
-    <ProjectView>ProjectFiles</ProjectView>
+    <ProjectView>ShowAllFiles</ProjectView>
     <StartupFile>
     </StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
