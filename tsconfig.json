@@ -6,7 +6,8 @@
   ],
   "compilerOptions": {
     "target": "es5",
-    "lib": [ "dom", "es2015", "es6" ]
+    "lib": [ "dom", "es2015", "es6" ],
+    "importHelpers":true,
   }
 
 }

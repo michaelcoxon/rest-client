@@ -14,7 +14,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "pretty": true,
-
+    "importHelpers":true,
     "outDir": "../../../lib",
     "declaration": true,
     "declarationDir": "../../../dts",

@@ -29,6 +29,7 @@ module.exports = () =>
     const isDevBuild = !(env && env === 'production');
 
     return [{
+        mode: isDevBuild ? 'development' : 'production',
         entry: { 'index': `./${srcDir}/index.ts` },
         resolve: { extensions: ['.ts'] },
         output: {
