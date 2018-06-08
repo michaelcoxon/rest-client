@@ -1,12 +1,12 @@
 ﻿import { IHttpRequest, IHttpFilter, IHttpRequestHeaderCollection, IHttpResponse, IHttpRequestContent, IHttpResponseHeaderCollection, IHttpResponseContent, IErrorHttpResponse } from "../interfaces/HttpClientInterfaces";
-import { HttpMethod, HttpStatusCode, HttpResponseType } from "../interfaces/HttpClientEnums";
+import { HttpMethod, HttpStatusCode, HttpResponseType, KnownHeaderNames } from "../interfaces/HttpClientEnums";
 import { HttpRequestHeaderCollection } from "../HttpRequestHeaderCollection";
 import { HttpResponseHeaderCollection } from "../HttpResponseHeaderCollection";
-import { KnownHeaderNames } from "../interfaces/KnownHeaderNames";
 import { InvalidOperationException } from "../Exceptions";
 import { EmptyRequestContent } from "../RequestContent";
 import { Lazy, LazyAsync, Strings, NotSupportedException, ArgumentException } from "@michaelcoxon/utilities";
 import { ResponseContentHandlerCollection } from "../ResponseContentHandlers";
+import { Url, stringOrUrlToUrl, StringOrUrl } from "../Url";
 
 const MUST_EXECUTE_RESPONSE_FIRST_MESSAGE = "Must execute response first";
 
@@ -26,25 +26,22 @@ export class XhrHttpRequest implements IHttpRequest
 
     public readonly headers: IHttpRequestHeaderCollection;
     public readonly method: HttpMethod;
-    public readonly uri: string;
+    public readonly uri: Url;
     public readonly xhr: XMLHttpRequest;
 
     public content: IHttpRequestContent;
 
     constructor(
         method: HttpMethod,
-        uri: string,
+        uri: StringOrUrl,
         filters: IHttpFilter[] = [],
-        headers: IHttpRequestHeaderCollection = new HttpRequestHeaderCollection([{
-            name: KnownHeaderNames.accept,
-            value: "application/json, text/javascript, text/plain"
-        }]),
-        ignoreCache: boolean = false,
-        timeout: number = 5000,
+        headers: IHttpRequestHeaderCollection,
+        ignoreCache: boolean,
+        timeout: number,
     )
     {
         this.method = method;
-        this.uri = uri;
+        this.uri = stringOrUrlToUrl(uri);
         this._filters = filters;
         this.headers = headers;
         this._timeout = timeout;
@@ -132,7 +129,7 @@ export class XhrHttpRequest implements IHttpRequest
         }
         this._prepared = true;
 
-        this.xhr.open(this.method, this.uri);
+        this.xhr.open(this.method, this.uri.toString());
 
         if (!this.content)
         {

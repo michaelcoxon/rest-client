@@ -1,6 +1,6 @@
 ﻿import { ArgumentException, KeyAlreadyDefinedException } from '@michaelcoxon/utilities';
 import { IHttpHeader, HttpHeaderValue, IHttpHeaderCollection } from "./interfaces/HttpClientInterfaces";
-import { KnownHeaderNames } from "./interfaces/KnownHeaderNames";
+import { KnownHeaderNames } from "./interfaces/HttpClientEnums";
 
 
 
@@ -9,16 +9,9 @@ export class HeaderCollection implements IHttpHeaderCollection
 {
     private readonly _headers: IHttpHeader[];
 
-    constructor(headers?: IHttpHeader[])
+    constructor(...headers: IHttpHeader[])
     {
-        if (headers)
-        {
-            this._headers = [...headers];
-        }
-        else
-        {
-            this._headers = [];
-        }
+        this._headers = [...headers];
     }
 
     add(name: string, value: HttpHeaderValue): void
@@ -91,6 +84,18 @@ export class HeaderCollection implements IHttpHeaderCollection
         for (const header of this._headers)
         {
             result[header.name] = header.value;
+        }
+
+        return result;
+    }
+
+    public static createFromObject(headers: { [name: string]: HttpHeaderValue }): IHttpHeaderCollection
+    {
+        const result = new HeaderCollection();
+
+        for (const name in headers)
+        {
+            result.add(name, headers[name]);
         }
 
         return result;

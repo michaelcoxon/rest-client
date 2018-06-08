@@ -1,5 +1,5 @@
 ﻿import { IHttpRequestHeaderCollection, IHttpHeader, HttpHeaderValue } from "./interfaces/HttpClientInterfaces";
-import { KnownHeaderNames } from "./interfaces/KnownHeaderNames";
+import { KnownHeaderNames } from "./interfaces/HttpClientEnums";
 import { HeaderCollection } from "./HeaderCollection";
 
 
@@ -27,5 +27,17 @@ export class HttpRequestHeaderCollection extends HeaderCollection implements IHt
         {
             this.add(KnownHeaderNames.authorization, value);
         }
+    }
+
+    public static createFromObject(headers: { [name: string]: HttpHeaderValue }): IHttpRequestHeaderCollection
+    {
+        const result = new HttpRequestHeaderCollection();
+
+        for (const name in headers)
+        {
+            result.add(name, headers[name]);
+        }
+
+        return result;
     }
 }

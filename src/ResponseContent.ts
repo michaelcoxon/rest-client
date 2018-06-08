@@ -21,3 +21,18 @@ export class JsonResponseContent implements IHttpResponseContent
         return this._object as T;
     }
 }
+
+export class PlainTextResponseContent implements IHttpResponseContent
+{
+    private readonly _text: string;
+
+    constructor(text: string)
+    {
+        this._text = text;
+    }
+
+    public get content(): string
+    {
+        return this._text;
+    }
+}

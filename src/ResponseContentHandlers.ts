@@ -1,8 +1,7 @@
 ﻿import { IHttpResponseContentHandler, IHttpResponse, IHttpResponseContent } from "./interfaces/HttpClientInterfaces";
 import { ArgumentException } from "@michaelcoxon/utilities";
-import { KnownContentTypes } from "./interfaces/KnownContentTypes";
-import { JsonResponseContent } from "./ResponseContent";
-import { HttpResponseType } from "./interfaces/HttpClientEnums";
+import { JsonResponseContent, PlainTextResponseContent } from "./ResponseContent";
+import { HttpResponseType, KnownContentTypes, KnownHeaderNames } from "./interfaces/HttpClientEnums";
 
 
 
@@ -56,11 +55,83 @@ export class JsonResponseContentHandler implements IHttpResponseContentHandler
     }
 }
 
+export class PlainTextResponseContentHandler implements IHttpResponseContentHandler
+{
+    public async canHandleAsync(response: IHttpResponse): Promise<boolean>
+    {
+        // if the responseTyoe is set we can be pretty sure this is ok
+        if (response.responseType == HttpResponseType.text)
+        {
+            return true;
+        }
+        // otherwise lets parse the content type
+        else if (response.headers.contentType)
+        {
+            switch (response.headers.contentType.contentType)
+            {
+                case KnownContentTypes.plainText:
+                    return true;
+            }
+        }
+        // other than the above, this is not looking good
+        return false;
+    }
+
+    public async handleAsync(response: IHttpResponse): Promise<IHttpResponseContent>
+    {
+        return new PlainTextResponseContent(response.response);
+    }
+}
 
 
 
+export class NoContentResponseContentHandler implements IHttpResponseContentHandler
+{
+    public async canHandleAsync(response: IHttpResponse): Promise<boolean>
+    {
+        const contentLength = response.headers.get(KnownHeaderNames.contentLength);
 
+        if (contentLength !== undefined)
+        {
+            return contentLength.value == 0;
+        }
+        else if (response.responseType == HttpResponseType.unknown)
+        {
+            return (response.response as string).length == 0;
+        }
+        else if (ArrayBuffer !== undefined && response.response instanceof ArrayBuffer)
+        {
+            return response.response.byteLength == 0;
+        }
+        else if (Blob !== undefined && response.response instanceof Blob)
+        {
+            response.response.size == 0;
+        }
+        else if (Document !== undefined && response.response instanceof Document)
+        {
+            if (response.response.documentElement === null || response.response.documentElement === undefined)
+            {
+                return true;
+            }
+            else
+            {
+                return response.response.documentElement.outerHTML.length == 0;
+            }
+        }
+        else if (typeof (response.response) === "string")
+        {
+            return response.response.length == 0;
+        }
 
+        // after this we are unsure so just return false
+        return false;
+    }
+
+    public async handleAsync(response: IHttpResponse): Promise<IHttpResponseContent>
+    {
+        return {};
+    }
+}
 
 
 
@@ -70,7 +141,8 @@ export class JsonResponseContentHandler implements IHttpResponseContentHandler
 // -- must be last
 const defaultHandlers: IHttpResponseContentHandler[] =
     [
-        new JsonResponseContentHandler()
+        new JsonResponseContentHandler(),
+        new PlainTextResponseContentHandler(),
     ];
 
 ResponseContentHandlerCollection.setHandlers(defaultHandlers);

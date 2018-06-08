@@ -1,9 +1,29 @@
-﻿
+﻿/** Common content encondings */
 export enum HttpContentEncoding
 {
     utf8 = "utf-8",
 }
+ /** common header names */
+export enum KnownHeaderNames
+{
+    accept = "Accept",
+    authorization = "Authorization",
+    cacheControl = "Cache-Control",
+    contentType = "Content-Type",
+    contentLength= "Content-Length",
+}
 
+/** common content types */
+export enum KnownContentTypes
+{
+    any = "*/*",
+    json = "application/json",
+    plainText = "text/plain",
+    xml = "text/xml",
+    html = "text/html",
+}
+
+/** Http methods */
 export enum HttpMethod
 {
     get = "GET",
@@ -16,7 +36,7 @@ export enum HttpMethod
     patch = "PATCH"
 }
 
-
+/** Denotes the response type if known */
 export enum HttpResponseType
 {
     unknown = "",
@@ -27,7 +47,7 @@ export enum HttpResponseType
     text = "text",
 }
 
-
+/** Status codes for responses */
 export enum HttpStatusCode
 {
     continue = 100,

@@ -1,5 +1,5 @@
 ﻿import { IHttpContentHeaderCollection, IHttpHeader, HttpHeaderValue, IContentType } from "./interfaces/HttpClientInterfaces";
-import { KnownHeaderNames } from "./interfaces/KnownHeaderNames";
+import { KnownHeaderNames } from "./interfaces/HttpClientEnums";
 import { HeaderCollection } from "./HeaderCollection";
 import { HeaderHelpers } from "./helpers/HeaderHelpers";
 
@@ -27,5 +27,17 @@ export class HttpContentHeaderCollection extends HeaderCollection implements IHt
         {
             this.add(KnownHeaderNames.contentType, HeaderHelpers.contentTypeToString(value));
         }
+    }
+
+    public static createFromObject(headers: { [name: string]: HttpHeaderValue }): IHttpContentHeaderCollection
+    {
+        const result = new HttpContentHeaderCollection();
+
+        for (const name in headers)
+        {
+            result.add(name, headers[name]);
+        }
+
+        return result;
     }
 }

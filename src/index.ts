@@ -4,8 +4,6 @@ export * from './helpers/HeaderHelpers';
 export * from './helpers/QueryStringHelper';
 export * from './interfaces/HttpClientEnums';
 export * from './interfaces/HttpClientInterfaces';
-export * from './interfaces/KnownContentTypes';
-export * from './interfaces/KnownHeaderNames';
 export * from './xhr/XhrHttpClient';
 export * from './xhr/XhrHttpRequestResponse';
 export * from './Exceptions';
