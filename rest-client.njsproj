@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{4ccd470b-0d35-45bc-9f89-90aa96f7cba9}</ProjectGuid>
     <ProjectHome />
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <StartupFile>
     </StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
@@ -26,7 +26,80 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include=".nojekyll" />
     <Content Include=".npmignore" />
+    <Content Include="docs\.nojekyll" />
+    <Content Include="docs\assets\css\main.css" />
+    <Content Include="docs\assets\css\main.css.map" />
+    <Content Include="docs\assets\images\icons%402x.png" />
+    <Content Include="docs\assets\images\icons.png" />
+    <Content Include="docs\assets\images\widgets%402x.png" />
+    <Content Include="docs\assets\images\widgets.png" />
+    <Content Include="docs\classes\_exceptions_.invalidoperationexception.html" />
+    <Content Include="docs\classes\_exceptions_.requestcancelledexception.html" />
+    <Content Include="docs\classes\_exceptions_.serviceexception.html" />
+    <Content Include="docs\classes\_filters_basicauthenticationfilter_.basicauthenticationfilter.html" />
+    <Content Include="docs\classes\_headercollection_.headercollection.html" />
+    <Content Include="docs\classes\_httpcontentheadercollection_.httpcontentheadercollection.html" />
+    <Content Include="docs\classes\_httprequestheadercollection_.httprequestheadercollection.html" />
+    <Content Include="docs\classes\_httpresponseheadercollection_.httpresponseheadercollection.html" />
+    <Content Include="docs\classes\_requestcontent_.emptyrequestcontent.html" />
+    <Content Include="docs\classes\_requestcontent_.jsonrequestcontent.html" />
+    <Content Include="docs\classes\_requestcontent_.stringrequestcontent.html" />
+    <Content Include="docs\classes\_responsecontenthandlers_.jsonresponsecontenthandler.html" />
+    <Content Include="docs\classes\_responsecontenthandlers_.nocontentresponsecontenthandler.html" />
+    <Content Include="docs\classes\_responsecontenthandlers_.plaintextresponsecontenthandler.html" />
+    <Content Include="docs\classes\_responsecontenthandlers_.responsecontenthandlercollection.html" />
+    <Content Include="docs\classes\_responsecontent_.jsonresponsecontent.html" />
+    <Content Include="docs\classes\_responsecontent_.plaintextresponsecontent.html" />
+    <Content Include="docs\classes\_url_.querystringcollection.html" />
+    <Content Include="docs\classes\_url_.url.html" />
+    <Content Include="docs\classes\_xhr_xhrhttpclient_.xhrhttpclient.html" />
+    <Content Include="docs\classes\_xhr_xhrhttprequestresponse_.xhrerrorhttpresponse.html" />
+    <Content Include="docs\classes\_xhr_xhrhttprequestresponse_.xhrhttprequest.html" />
+    <Content Include="docs\classes\_xhr_xhrhttprequestresponse_.xhrhttpresponse.html" />
+    <Content Include="docs\enums\_interfaces_httpclientenums_.httpcontentencoding.html" />
+    <Content Include="docs\enums\_interfaces_httpclientenums_.httpmethod.html" />
+    <Content Include="docs\enums\_interfaces_httpclientenums_.httpresponsetype.html" />
+    <Content Include="docs\enums\_interfaces_httpclientenums_.httpstatuscode.html" />
+    <Content Include="docs\enums\_interfaces_httpclientenums_.knowncontenttypes.html" />
+    <Content Include="docs\enums\_interfaces_httpclientenums_.knownheadernames.html" />
+    <Content Include="docs\globals.html" />
+    <Content Include="docs\index.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.icontenttype.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.ierrorhttpresponse.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.ihttpclient.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.ihttpcontentheadercollection.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.ihttpfilter.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.ihttpheader.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.ihttpheadercollection.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.ihttprequest.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.ihttprequestcontent.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.ihttprequestheadercollection.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.ihttpresponse.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.ihttpresponsecontent.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.ihttpresponsecontenthandler.html" />
+    <Content Include="docs\interfaces\_interfaces_httpclientinterfaces_.ihttpresponseheadercollection.html" />
+    <Content Include="docs\modules\_exceptions_.html" />
+    <Content Include="docs\modules\_filters_basicauthenticationfilter_.html" />
+    <Content Include="docs\modules\_headercollection_.html" />
+    <Content Include="docs\modules\_helpers_headerhelpers_.headerhelpers.html" />
+    <Content Include="docs\modules\_helpers_headerhelpers_.html" />
+    <Content Include="docs\modules\_helpers_querystringhelper_.html" />
+    <Content Include="docs\modules\_helpers_querystringhelper_.querystringhelper.html" />
+    <Content Include="docs\modules\_httpcontentheadercollection_.html" />
+    <Content Include="docs\modules\_httprequestheadercollection_.html" />
+    <Content Include="docs\modules\_httpresponseheadercollection_.html" />
+    <Content Include="docs\modules\_index_.html" />
+    <Content Include="docs\modules\_interfaces_httpclientenums_.html" />
+    <Content Include="docs\modules\_interfaces_httpclientinterfaces_.html" />
+    <Content Include="docs\modules\_requestcontent_.html" />
+    <Content Include="docs\modules\_responsecontenthandlers_.html" />
+    <Content Include="docs\modules\_responsecontent_.html" />
+    <Content Include="docs\modules\_types_.html" />
+    <Content Include="docs\modules\_url_.html" />
+    <Content Include="docs\modules\_xhr_xhrhttpclient_.html" />
+    <Content Include="docs\modules\_xhr_xhrhttprequestresponse_.html" />
     <Content Include="LICENSE" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -36,8 +109,18 @@
     <Content Include="tests\index.htm" />
     <Content Include="tests\tsconfig.json" />
     <Content Include="tsconfig.json" />
+    <Content Include="_config.yml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="docs\" />
+    <Folder Include="docs\assets\" />
+    <Folder Include="docs\assets\css\" />
+    <Folder Include="docs\assets\images\" />
+    <Folder Include="docs\assets\js\" />
+    <Folder Include="docs\classes\" />
+    <Folder Include="docs\enums\" />
+    <Folder Include="docs\interfaces\" />
+    <Folder Include="docs\modules\" />
     <Folder Include="src\" />
     <Folder Include="src\config\" />
     <Folder Include="src\config\es2015\" />
@@ -50,6 +133,8 @@
     <Folder Include="tests\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="docs\assets\js\main.js" />
+    <Compile Include="docs\assets\js\search.js" />
     <Compile Include="webpack.config.tests.js" />
     <Compile Include="webpack.config.js" />
   </ItemGroup>
@@ -72,11 +157,11 @@
     <TypeScriptCompile Include="src\HeaderCollection.ts" />
     <TypeScriptCompile Include="src\HttpRequestHeaderCollection.ts" />
     <TypeScriptCompile Include="src\ResponseContentHandlers.ts" />
-    <TypeScriptCompile Include="tests\HeaderCollections.spec.ts">
+    <TypeScriptCompile Include="tests\HeaderCollections.unit.spec.ts">
       <TestFramework>Mocha</TestFramework>
     </TypeScriptCompile>
     <TypeScriptCompile Include="tests\index.ts" />
-    <TypeScriptCompile Include="tests\QueryStringCollection.spec.ts">
+    <TypeScriptCompile Include="tests\QueryStringCollection.unit.spec.ts">
       <TestFramework>Mocha</TestFramework>
     </TypeScriptCompile>
     <TypeScriptCompile Include="tests\Xhr.spec.ts">
