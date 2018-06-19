@@ -40,6 +40,7 @@ module.exports = () =>
             libraryTarget: 'umd'
         },
         externals: [
+            /^tslib.*$/,
             /^@michaelcoxon\/utilities.*$/
         ],
         module: {

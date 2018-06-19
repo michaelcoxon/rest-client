@@ -7,6 +7,7 @@ import { EmptyRequestContent } from "../RequestContent";
 import { Lazy, LazyAsync, Strings, NotSupportedException, ArgumentException } from "@michaelcoxon/utilities";
 import { ResponseContentHandlerCollection } from "../ResponseContentHandlers";
 import { Url, stringOrUrlToUrl, StringOrUrl } from "../Url";
+import { HeaderHelpers } from '..';
 
 const MUST_EXECUTE_RESPONSE_FIRST_MESSAGE = "Must execute response first";
 
@@ -348,12 +349,12 @@ export class XhrHttpResponse implements IHttpResponse
     private static _createHttpResponseHeaderCollection(xhrHeaders: string): IHttpResponseHeaderCollection
     {
         const collection = new HttpResponseHeaderCollection();
-        const headers = xhrHeaders.split(Strings.newLine);
-        for (const header of headers)
+
+        for (const header of HeaderHelpers.splitHeadersFromString(xhrHeaders))
         {
-            const [name, value] = Strings.trim(header).split(':', 2);
-            collection.add(name, value);
+            collection.add(header.name, header.value);
         }
+
         return collection;
     }
 

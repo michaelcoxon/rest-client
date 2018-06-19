@@ -6,6 +6,7 @@ import { KnownHeaderNames, KnownContentTypes, HttpContentEncoding } from '../src
 import { HttpContentHeaderCollection } from '../src/HttpContentHeaderCollection';
 import { HttpRequestHeaderCollection } from '../src/HttpRequestHeaderCollection';
 import { HttpResponseHeaderCollection } from '../src/HttpResponseHeaderCollection';
+import { HeaderHelpers } from '../src';
 
 describe('HeaderCollection.constructor', () =>
 {
@@ -416,5 +417,59 @@ describe('HttpResponseHeaderCollection.createFromObject', () =>
         assert.equal(result.get(KnownHeaderNames.contentLength)!.value, 50);
         assert.equal(result.get(KnownHeaderNames.contentType)!.value, KnownContentTypes.html);
         assert.equal(result.contentType!.contentType, KnownContentTypes.html);
+    });
+});
+
+
+describe('HeaderHelpers.splitHeadersFromString', () =>
+{
+    it('creates headers from a string of headers \r\n', () =>
+    {
+        const headers = "Transfer-Encoding: chunked\r\nContent-Type: application/json; charset=utf-8\r\nServer: Kestrel\r\nX-SourceFiles: =?UTF-8?B?QzpcVXNlcnNcbWljaGFlbFxTb3VyY2VcUmVwb3NcTGl2ZSBQdWJsaXNoIE9mZmljZSBJbnRlZ3JhdGlvblxRdWFsaXRlbS5MaXZlUHVibGlzaC5PZmZpY2VcY29uZmlnXGFwaS1jb25maWc=?=\r\nX-Powered-By: ASP.NET\r\nDate: Mon, 11 Jun 2018 06:06:18 GMT\r\n\r\n";
+
+        const result = HeaderHelpers.splitHeadersFromString(headers);
+
+        result[0].name = "Transfer-Encoding";
+        result[0].value = "chunked";
+
+        result[1].name = "Content-Type";
+        result[1].value = "application/json; charset=utf-8";
+
+        result[2].name = "Server";
+        result[2].value = "Kestrel";
+
+        result[3].name = "X-SourceFiles";
+        result[3].value = "=?UTF-8?B?QzpcVXNlcnNcbWljaGFlbFxTb3VyY2VcUmVwb3NcTGl2ZSBQdWJsaXNoIE9mZmljZSBJbnRlZ3JhdGlvblxRdWFsaXRlbS5MaXZlUHVibGlzaC5PZmZpY2VcY29uZmlnXGFwaS1jb25maWc=?=";
+
+        result[4].name = "X-Powered-By";
+        result[4].value = "ASP.NET";
+
+        result[5].name = "Date";
+        result[5].value = "Mon, 11 Jun 2018 06:06:18 GMT";
+    });
+
+    it('creates headers from a string of headers \n', () =>
+    {
+        const headers = "Transfer-Encoding: chunked\nContent-Type: application/json; charset=utf-8\nServer: Kestrel\nX-SourceFiles: =?UTF-8?B?QzpcVXNlcnNcbWljaGFlbFxTb3VyY2VcUmVwb3NcTGl2ZSBQdWJsaXNoIE9mZmljZSBJbnRlZ3JhdGlvblxRdWFsaXRlbS5MaXZlUHVibGlzaC5PZmZpY2VcY29uZmlnXGFwaS1jb25maWc=?=\nX-Powered-By: ASP.NET\nDate: Mon, 11 Jun 2018 06:06:18 GMT\n\n";
+
+        const result = HeaderHelpers.splitHeadersFromString(headers);
+
+        result[0].name = "Transfer-Encoding";
+        result[0].value = "chunked";
+
+        result[1].name = "Content-Type";
+        result[1].value = "application/json; charset=utf-8";
+
+        result[2].name = "Server";
+        result[2].value = "Kestrel";
+
+        result[3].name = "X-SourceFiles";
+        result[3].value = "=?UTF-8?B?QzpcVXNlcnNcbWljaGFlbFxTb3VyY2VcUmVwb3NcTGl2ZSBQdWJsaXNoIE9mZmljZSBJbnRlZ3JhdGlvblxRdWFsaXRlbS5MaXZlUHVibGlzaC5PZmZpY2VcY29uZmlnXGFwaS1jb25maWc=?=";
+
+        result[4].name = "X-Powered-By";
+        result[4].value = "ASP.NET";
+
+        result[5].name = "Date";
+        result[5].value = "Mon, 11 Jun 2018 06:06:18 GMT";
     });
 });

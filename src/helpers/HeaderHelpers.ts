@@ -44,4 +44,17 @@ export namespace HeaderHelpers
             return contentType;
         }
     }
+
+    export function splitHeadersFromString(headers: string): { name: string, value: string }[]
+    {
+        return headers
+            .split(/\r|\n/g)
+            .map(h => Strings.trim(h))
+            .filter(h => !Strings.isNullOrEmpty(h))
+            .map(h =>
+            {
+                const [name, value] = h.split(':', 2);
+                return { name, value };
+            });
+    }
 }
