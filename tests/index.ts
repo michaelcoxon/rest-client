@@ -2,7 +2,8 @@
 
 (mocha as any).setup('bdd')
 
-import './QueryStringCollection.spec';
+import './HeaderCollections.unit.spec';
+import './QueryStringCollection.unit.spec';
 import './Xhr.spec';
 
 mocha.run();

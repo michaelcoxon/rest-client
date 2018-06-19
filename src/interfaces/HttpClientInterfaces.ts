@@ -146,6 +146,8 @@ export interface IHttpResponse
     readonly responseType: HttpResponseType;
     /** The request that created the response */
     readonly request: Readonly<IHttpRequest>;
+    /** When true, the request should be retried */
+    shouldRetry: boolean;
     /**
      * Executes a request that populates the response
      * @param request
