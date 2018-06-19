@@ -1,6 +1,6 @@
 ﻿import { ArgumentException, KeyAlreadyDefinedException } from '@michaelcoxon/utilities';
-import { IHttpHeader, HttpHeaderValue, IHttpHeaderCollection } from "./interfaces/HttpClientInterfaces";
-import { KnownHeaderNames } from "./interfaces/HttpClientEnums";
+import { IHttpHeader, HttpHeaderValue, IHttpHeaderCollection } from './interfaces/HttpClientInterfaces';
+import { KnownHeaderNames } from './interfaces/HttpClientEnums';
 
 
 

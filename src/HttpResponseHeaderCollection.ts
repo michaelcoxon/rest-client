@@ -1,7 +1,7 @@
-﻿import { IHttpResponseHeaderCollection, IHttpHeader, HttpHeaderValue, IContentType } from "./interfaces/HttpClientInterfaces";
-import { KnownHeaderNames } from "./interfaces/HttpClientEnums";
-import { HeaderCollection } from "./HeaderCollection";
-import { HeaderHelpers } from "./helpers/HeaderHelpers";
+﻿import { IHttpResponseHeaderCollection, IHttpHeader, HttpHeaderValue, IContentType } from './interfaces/HttpClientInterfaces';
+import { KnownHeaderNames } from './interfaces/HttpClientEnums';
+import { HeaderCollection } from './HeaderCollection';
+import { HeaderHelpers } from './helpers/HeaderHelpers';
 
 
 export class HttpResponseHeaderCollection extends HeaderCollection implements IHttpResponseHeaderCollection

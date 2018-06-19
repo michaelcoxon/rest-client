@@ -1,5 +1,5 @@
-﻿import { Strings } from "@michaelcoxon/utilities";
-import { QueryStringItem } from "../Types";
+﻿import { Strings } from '@michaelcoxon/utilities';
+import { QueryStringItem } from '../Types';
 
 
 export namespace QueryStringHelper

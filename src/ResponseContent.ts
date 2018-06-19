@@ -1,4 +1,4 @@
-﻿import { IHttpResponseContent } from "./interfaces/HttpClientInterfaces";
+﻿import { IHttpResponseContent } from './interfaces/HttpClientInterfaces';
 
 
 

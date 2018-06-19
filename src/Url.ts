@@ -1,6 +1,6 @@
-﻿import { NotSupportedException, Strings } from "@michaelcoxon/utilities";
-import { QueryStringHelper } from "./helpers/QueryStringHelper";
-import { QueryStringItem } from "./Types";
+﻿import { NotSupportedException, Strings } from '@michaelcoxon/utilities';
+import { QueryStringHelper } from './helpers/QueryStringHelper';
+import { QueryStringItem } from './Types';
 
 export type StringOrUrl = Url | string;
 

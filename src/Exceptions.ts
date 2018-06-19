@@ -1,5 +1,5 @@
-﻿import { Exception } from "@michaelcoxon/utilities";
-import { IHttpResponse, IHttpRequest } from ".";
+﻿import { Exception } from '@michaelcoxon/utilities';
+import { IHttpResponse, IHttpRequest } from '.';
 
 
 export class InvalidOperationException extends Exception

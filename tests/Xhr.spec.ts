@@ -1,4 +1,4 @@
-﻿//import * as xhrm from "xmlhttprequest";
+﻿//import * as xhrm from 'xmlhttprequest';
 
 import { expect, assert } from 'chai';
 import 'mocha';
