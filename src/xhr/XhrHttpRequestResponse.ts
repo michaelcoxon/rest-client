@@ -7,6 +7,7 @@ import { EmptyRequestContent } from '../RequestContent';
 import { Lazy, LazyAsync, Strings, NotSupportedException, ArgumentException } from '@michaelcoxon/utilities';
 import { ResponseContentHandlerCollection } from '../ResponseContentHandlers';
 import { Url, stringOrUrlToUrl, StringOrUrl } from '../Url';
+import { HeaderHelpers } from '../helpers/HeaderHelpers';
 
 const MUST_EXECUTE_RESPONSE_FIRST_MESSAGE = "Must execute response first";
 
