@@ -1,7 +1,7 @@
-﻿import { IHttpResponseContentHandler, IHttpResponse, IHttpResponseContent } from "./interfaces/HttpClientInterfaces";
-import { ArgumentException } from "@michaelcoxon/utilities";
-import { JsonResponseContent, PlainTextResponseContent } from "./ResponseContent";
-import { HttpResponseType, KnownContentTypes, KnownHeaderNames } from "./interfaces/HttpClientEnums";
+﻿import { IHttpResponseContentHandler, IHttpResponse, IHttpResponseContent } from './interfaces/HttpClientInterfaces';
+import { ArgumentException } from '@michaelcoxon/utilities';
+import { JsonResponseContent, PlainTextResponseContent } from './ResponseContent';
+import { HttpResponseType, KnownContentTypes, KnownHeaderNames } from './interfaces/HttpClientEnums';
 
 
 

@@ -1,10 +1,10 @@
-﻿import { IHttpClient, IHttpRequest, IHttpFilter, IHttpRequestHeaderCollection } from "../interfaces/HttpClientInterfaces";
-import { HttpMethod, KnownHeaderNames } from "../interfaces/HttpClientEnums";
-import { XhrHttpRequest, XhrHttpResponse } from "./XhrHttpRequestResponse";
-import { JsonResponseContent } from "../ResponseContent";
-import { StringOrUrl, Url } from "../Url";
-import { HttpRequestHeaderCollection } from "../HttpRequestHeaderCollection";
-import { RequestCancelledException, ServiceException, JsonRequestContent } from "..";
+﻿import { IHttpClient, IHttpRequest, IHttpFilter, IHttpRequestHeaderCollection } from '../interfaces/HttpClientInterfaces';
+import { HttpMethod, KnownHeaderNames } from '../interfaces/HttpClientEnums';
+import { XhrHttpRequest, XhrHttpResponse } from './XhrHttpRequestResponse';
+import { JsonResponseContent } from '../ResponseContent';
+import { StringOrUrl, Url } from '../Url';
+import { HttpRequestHeaderCollection } from '../HttpRequestHeaderCollection';
+import { RequestCancelledException, ServiceException, JsonRequestContent } from '..';
 
 
 /** Implementation of IHttpClient for XMLHttpRequest */

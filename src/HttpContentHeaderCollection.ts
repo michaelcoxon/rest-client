@@ -1,7 +1,7 @@
-﻿import { IHttpContentHeaderCollection, IHttpHeader, HttpHeaderValue, IContentType } from "./interfaces/HttpClientInterfaces";
-import { KnownHeaderNames } from "./interfaces/HttpClientEnums";
-import { HeaderCollection } from "./HeaderCollection";
-import { HeaderHelpers } from "./helpers/HeaderHelpers";
+﻿import { IHttpContentHeaderCollection, IHttpHeader, HttpHeaderValue, IContentType } from './interfaces/HttpClientInterfaces';
+import { KnownHeaderNames } from './interfaces/HttpClientEnums';
+import { HeaderCollection } from './HeaderCollection';
+import { HeaderHelpers } from './helpers/HeaderHelpers';
 
 
 

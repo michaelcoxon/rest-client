@@ -1,4 +1,4 @@
-﻿import { IHttpFilter, IHttpResponse, IHttpRequest } from "../interfaces/HttpClientInterfaces";
+﻿import { IHttpFilter, IHttpResponse, IHttpRequest } from '../interfaces/HttpClientInterfaces';
 
 
 export class BasicAuthenticationFilter implements IHttpFilter

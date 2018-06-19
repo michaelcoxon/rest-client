@@ -1,6 +1,6 @@
-﻿import { IHttpRequestContent, IHttpContentHeaderCollection, IHttpRequestHeaderCollection } from "./interfaces/HttpClientInterfaces";
-import { HttpContentHeaderCollection } from "./HttpContentHeaderCollection";
-import { HttpContentEncoding, KnownContentTypes } from "./interfaces/HttpClientEnums";
+﻿import { IHttpRequestContent, IHttpContentHeaderCollection, IHttpRequestHeaderCollection } from './interfaces/HttpClientInterfaces';
+import { HttpContentHeaderCollection } from './HttpContentHeaderCollection';
+import { HttpContentEncoding, KnownContentTypes } from './interfaces/HttpClientEnums';
 
 
 

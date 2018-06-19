@@ -1,4 +1,4 @@
-﻿import { IContentType } from "../interfaces/HttpClientInterfaces";
+﻿import { IContentType } from '../interfaces/HttpClientInterfaces';
 import { Strings } from '@michaelcoxon/utilities';
 
 

@@ -1,6 +1,6 @@
-﻿import { IHttpRequestHeaderCollection, IHttpHeader, HttpHeaderValue } from "./interfaces/HttpClientInterfaces";
-import { KnownHeaderNames } from "./interfaces/HttpClientEnums";
-import { HeaderCollection } from "./HeaderCollection";
+﻿import { IHttpRequestHeaderCollection, IHttpHeader, HttpHeaderValue } from './interfaces/HttpClientInterfaces';
+import { KnownHeaderNames } from './interfaces/HttpClientEnums';
+import { HeaderCollection } from './HeaderCollection';
 
 
 
