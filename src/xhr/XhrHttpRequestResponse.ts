@@ -252,6 +252,9 @@ export class XhrHttpResponse implements IHttpResponse
         this._lazyContentAsync = new LazyAsync(async () => { throw new InvalidOperationException(MUST_EXECUTE_RESPONSE_FIRST_MESSAGE) });
     }
 
+    public shouldRetry: boolean = false;
+
+
     get cancelled(): boolean
     {
         return this._cancelled;

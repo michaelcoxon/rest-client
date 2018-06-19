@@ -71,11 +71,11 @@ module.exports = () =>
                             beautify: false,
                             comments: /^!/
                         },
-                        mangle: {
+                        /*mangle: {
                             properties: {
                                 regex: /^_/
                             }
-                        }
+                        }*/
                     }
                 })
             ]
