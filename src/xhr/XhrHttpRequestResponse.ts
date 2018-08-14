@@ -8,6 +8,7 @@ import { Lazy, LazyAsync, Strings, NotSupportedException, ArgumentException } fr
 import { ResponseContentHandlerCollection } from '../ResponseContentHandlers';
 import { Url, stringOrUrlToUrl, StringOrUrl } from '../Url';
 import { HeaderHelpers } from '../helpers/HeaderHelpers';
+import { FilterHelpers } from '../helpers/FilterHelpers';
 
 const MUST_EXECUTE_RESPONSE_FIRST_MESSAGE = "Must execute response first";
 
@@ -81,24 +82,24 @@ export class XhrHttpRequest implements IHttpRequest
                 // prepare the request
                 await this._prepareRequestAsync();
 
-                this.xhr.onload = evt =>
+                this.xhr.onload = async evt =>
                 {
                     const response = this._prepareResponse();
-                    response.executeAsync(this);
+                    await response.executeAsync(this);
                     resolve(response);
                 };
 
-                this.xhr.onerror = evt =>
+                this.xhr.onerror = async evt =>
                 {
                     const response = this._prepareErrorResponse();
-                    response.executeAsync(this);
+                    await response.executeAsync(this);
                     resolve(response);
                 };
 
-                this.xhr.ontimeout = evt =>
+                this.xhr.ontimeout = async evt =>
                 {
                     const response = this._prepareTimeoutResponse();
-                    response.executeAsync(this);
+                    await response.executeAsync(this);
                     resolve(response);
                 };
 
@@ -137,7 +138,7 @@ export class XhrHttpRequest implements IHttpRequest
             this.content = new EmptyRequestContent();
         }
 
-        this._cancelled = await this._applyFiltersAsync();
+        this._cancelled = await FilterHelpers.applyFiltersToRequestAsync(this, this._filters);
 
         // if we cancelled the request then lets bail out here
         if (!this._cancelled)
@@ -149,29 +150,7 @@ export class XhrHttpRequest implements IHttpRequest
         }
     }
 
-    /** 
-     * applies the filters to the request
-     * @returns true if the request should be cancelled.
-     */
-    private async _applyFiltersAsync(): Promise<boolean>
-    {
-        let notCancel = true;
 
-        for (const filter of this._filters)
-        {
-            if (await filter.canHandleRequestAsync(this))
-            {
-                notCancel = notCancel && (!(await filter.handleRequestAsync(this)) || true);
-            }
-
-            if (!notCancel)
-            {
-                break;
-            }
-        }
-
-        return !notCancel;
-    }
 
     private _setHeaders(): void
     {
@@ -322,32 +301,10 @@ export class XhrHttpResponse implements IHttpResponse
         this._lazyresponseType = new Lazy<HttpResponseType>(() => XhrHttpResponse._mapResponseType(request.xhr.responseType));
         this._lazyContentAsync = new LazyAsync<IHttpResponseContent>(async () => await ResponseContentHandlerCollection.handleAsync(this));
 
-        this._cancelled = await this._applyFiltersAsync();
+        this._cancelled = await FilterHelpers.applyFiltersToResponseAsync(this, this._filters);
     }
 
-    /** 
-     * applies the filters to the response
-     * @returns true if the response should be cancelled.
-     */
-    private async _applyFiltersAsync(): Promise<boolean>
-    {
-        let notCancel = true;
 
-        for (const filter of this._filters)
-        {
-            if (await filter.canHandleResponseAsync(this))
-            {
-                notCancel = notCancel && (!(await filter.handleResponseAsync(this)) || true);
-            }
-
-            if (!notCancel)
-            {
-                break;
-            }
-        }
-
-        return !notCancel;
-    }
 
     private static _createHttpResponseHeaderCollection(xhrHeaders: string): IHttpResponseHeaderCollection
     {

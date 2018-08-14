@@ -6,7 +6,7 @@ import { KnownHeaderNames, KnownContentTypes, HttpContentEncoding } from '../src
 import { HttpContentHeaderCollection } from '../src/HttpContentHeaderCollection';
 import { HttpRequestHeaderCollection } from '../src/HttpRequestHeaderCollection';
 import { HttpResponseHeaderCollection } from '../src/HttpResponseHeaderCollection';
-import { HeaderHelpers } from '../src';
+import { HeaderHelpers } from '../src/helpers/HeaderHelpers';
 
 describe('HeaderCollection.constructor', () =>
 {

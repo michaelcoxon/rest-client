@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\filters\BasicAuthenticationFilter.ts" />
+    <TypeScriptCompile Include="src\helpers\FilterHelpers.ts" />
     <TypeScriptCompile Include="src\helpers\HeaderHelpers.ts" />
     <TypeScriptCompile Include="src\helpers\QueryStringHelper.ts" />
     <TypeScriptCompile Include="src\HttpContentHeaderCollection.ts" />
@@ -157,6 +158,9 @@
     <TypeScriptCompile Include="src\HeaderCollection.ts" />
     <TypeScriptCompile Include="src\HttpRequestHeaderCollection.ts" />
     <TypeScriptCompile Include="src\ResponseContentHandlers.ts" />
+    <TypeScriptCompile Include="tests\FilterHelpers.unit.spec.ts">
+      <TestFramework>Mocha</TestFramework>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="tests\HeaderCollections.unit.spec.ts">
       <TestFramework>Mocha</TestFramework>
     </TypeScriptCompile>
