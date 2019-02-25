@@ -4,12 +4,12 @@ import { XhrHttpRequest, XhrHttpResponse } from './XhrHttpRequestResponse';
 import { JsonResponseContent } from '../ResponseContent';
 import { StringOrUrl, Url } from '../Url';
 import { HttpRequestHeaderCollection } from '../HttpRequestHeaderCollection';
-import { RequestCancelledException, ServiceException, JsonRequestContent } from '..';
+import { RequestCancelledException, ServiceException } from '../Exceptions';
+import { JsonRequestContent } from '../RequestContent';
 
 
 /** Implementation of IHttpClient for XMLHttpRequest */
-export class XhrHttpClient implements IHttpClient
-{
+export class XhrHttpClient implements IHttpClient {
     /** The default timeout for requests. default is 5000ms */
     public static DefaultTimeout: number = 5000;
     /** The default ignoreCache parameter for XHR. default is false */
@@ -63,8 +63,7 @@ export class XhrHttpClient implements IHttpClient
      * @param timeout the timeout for the request
      */
     constructor(filters?: IHttpFilter[], headers?: IHttpRequestHeaderCollection, ignoreCache?: boolean, timeout?: number);
-    constructor(filters?: IHttpFilter[], headers?: IHttpRequestHeaderCollection, ignoreCache?: boolean, timeout?: number)
-    {
+    constructor(filters?: IHttpFilter[], headers?: IHttpRequestHeaderCollection, ignoreCache?: boolean, timeout?: number) {
         this.filters = filters || [];
         this._headers = headers || XhrHttpClient.DefaultHeaders;
         this._ignoreCache = ignoreCache === undefined ? XhrHttpClient.DefaultIgnoreCache : ignoreCache;
@@ -89,8 +88,7 @@ export class XhrHttpClient implements IHttpClient
      * @param uri the resource uri
      */
     createRequest(method: HttpMethod, uri: StringOrUrl): IHttpRequest;
-    createRequest(method: HttpMethod, uri: StringOrUrl): IHttpRequest
-    {
+    createRequest(method: HttpMethod, uri: StringOrUrl): IHttpRequest {
         return new XhrHttpRequest(method, uri, this.filters, this._headers, this._ignoreCache, this._timeout);
     }
 
@@ -115,21 +113,18 @@ export class XhrHttpClient implements IHttpClient
      * @throws ServiceException if the response is cancelled or if there was a status code in the error range
      */
     public async getObjectAsync<T>(uri: StringOrUrl): Promise<T>;
-    public async getObjectAsync<T>(uri: StringOrUrl): Promise<T>
-    {
+    public async getObjectAsync<T>(uri: StringOrUrl): Promise<T> {
         const request = this.createRequest(HttpMethod.get, uri);
 
         request.headers.update(KnownHeaderNames.accept, "application/json");
 
         const response = await request.executeAsync();
 
-        if (!response)
-        {
+        if (!response) {
             throw new RequestCancelledException(request);
         }
 
-        if (response.cancelled || !response.ok)
-        {
+        if (response.cancelled || !response.ok) {
             throw new ServiceException(response);
         }
 
@@ -158,8 +153,7 @@ export class XhrHttpClient implements IHttpClient
      * @throws ServiceException if the response is cancelled or if there was a status code in the error range
      */
     public async postObjectAsync<TData, TResponseData>(uri: StringOrUrl, data: TData): Promise<TResponseData>;
-    public async postObjectAsync<TData, TResponseData>(uri: StringOrUrl, data: TData): Promise<TResponseData>
-    {
+    public async postObjectAsync<TData, TResponseData>(uri: StringOrUrl, data: TData): Promise<TResponseData> {
         const request = this.createRequest(HttpMethod.post, uri);
 
         request.content = new JsonRequestContent(data);
@@ -167,13 +161,11 @@ export class XhrHttpClient implements IHttpClient
 
         const response = await request.executeAsync();
 
-        if (!response)
-        {
+        if (!response) {
             throw new RequestCancelledException(request);
         }
 
-        if (response.cancelled || !response.ok)
-        {
+        if (response.cancelled || !response.ok) {
             throw new ServiceException(response);
         }
 

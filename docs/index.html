@@ -72,17 +72,15 @@
 				</ul>
 				<h1 id="installation">Installation</h1>
 				<p>The library is available on NPM...</p>
-				<pre><code class="lang-sh">npm -i @michaelcoxon/rest-client
-</code></pre>
+				<pre><code class="language-sh">npm -i @michaelcoxon/rest-client</code></pre>
 				<h1 id="101">101</h1>
 				<p>The only implementation at the moment is for in-browser XMLHttpRequest.</p>
 				<p>use it like this...</p>
-				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { XhrHttpClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'@michaelcoxon/rest-client'</span>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> { XhrHttpClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'@michaelcoxon/rest-client'</span>
 
 <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> XhrHttpClient();
 <span class="hljs-keyword">const</span> url = <span class="hljs-string">'https://example.com/api/get-data'</span>;
-<span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> client.getObjectAsync(url);
-</code></pre>
+<span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> client.getObjectAsync(url);</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

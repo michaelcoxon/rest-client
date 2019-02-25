@@ -9,13 +9,23 @@
     "sourceMap": true,
     "skipDefaultLibCheck": true,
     "strict": true,
-    "lib": [ "es6", "es2015", "dom" ],
+    "lib": [
+      "es6",
+      "es2015",
+      "dom"
+    ],
+    "outDir": ".out",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "pretty": true,
     "target": "es5"
   },
-  "include": [ "../tests/**/*.spec.ts" ],
-  "exclude": [ "src/index.ts" ],
+  "include": [
+    "**/*.spec.ts"
+  ],
+  "exclude": [
+    "../src/index.ts",
+    "../node_modules/**"
+  ],
   "compileOnSave": true
 }

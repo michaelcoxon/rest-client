@@ -2,7 +2,13 @@
   "compileOnSave": false,
   "exclude": [
     "node_modules",
-    "src/index.ts"
+    "lib",
+    "lib.es2015",
+    "lib.es6",
+    "src",
+    "dist",
+    "dts",
+    "tests"
   ],
   "compilerOptions": {
     "baseUrl": ".",
@@ -13,17 +19,18 @@
     "removeComments": false,
     "sourceMap": false,
     "target": "es5",
-    "lib": [ "dom", "es2015", "es6" ],
+    "lib": [
+      "dom",
+      "es2015",
+      "es6"
+    ],
     "importHelpers": true,
-
     "skipDefaultLibCheck": true,
     "strict": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "pretty": true,
     "declaration": false,
-
     "traceResolution": true
   }
-
 }

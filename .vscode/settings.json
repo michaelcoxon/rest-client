@@ -1,0 +1,17 @@
+{
+    "files.exclude": {
+        "**/node_modules/": true,
+    },
+    "search.exclude": {
+        "out": true,
+        "**/node_modules/": true,
+    },
+    "mocha.requires": [
+        "ts-node/register"
+    ],
+    "mocha.sourceDir": "src",
+    "mocha.outputDir": ".output",
+    "mocha.enabled": true,
+    "mocha.files.glob": "tests/**/*.unit.spec.ts",
+    "mocha.logVerbose": false,
+}

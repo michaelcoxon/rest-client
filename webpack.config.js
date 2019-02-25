@@ -23,7 +23,7 @@ DtsBundlePlugin.prototype.apply = function (compiler)
 
         dts.bundle({
             name: libraryName,
-            main: `dts/index.d.ts`,
+            main: `lib/index.d.ts`,
             out: `.${bundleOutputDir}/index.d.ts`,
             outputAsModuleFolder: true // to use npm in-package typings
         });
@@ -42,14 +42,15 @@ module.exports = () =>
         resolve: { extensions: ['.ts'] },
         output: {
             path: path.join(__dirname, bundleOutputDir),
-            filename: `[name]${isDevBuild ? ".debug" : ""}.js`,
+            filename: `[name].js`,
             publicPath: 'dist/',
             library: libraryName,
-            libraryTarget: 'umd'
+            libraryTarget: 'umd',
+            globalObject: 'this'
         },
         externals: [
             /^tslib.*$/,
-            /^@michaelcoxon\/utilities.*$/
+            /^@michaelcoxon\/.*$/
         ],
         module: {
             rules: [
@@ -83,6 +84,7 @@ module.exports = () =>
         plugins: [
             new webpack.BannerPlugin(banner),
             new CheckerPlugin(),
+            new DtsBundlePlugin(),
 
             ...(isDevBuild
                 ?
@@ -96,7 +98,7 @@ module.exports = () =>
                 :
                 [
                     // Plugins that apply in production builds only
-                    new DtsBundlePlugin(),
+
                 ])
         ]
     }];
