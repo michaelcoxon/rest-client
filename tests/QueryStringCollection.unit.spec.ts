@@ -153,7 +153,7 @@ describe('QueryStringCollection.createFromObject', () => {
         const obj = query.toObject();
         const items = query.items;
 
-        assert.equal(str, '?' + queryString, 'querystring not equal');
+        assert.equal(str, '?' + queryString, `querystring not equal`);
 
         assert.equal(obj[name][name], value, 'obj not equal');
         assert.equal(items[0].name, `${name}.${name}`, 'items name not equal');
@@ -176,7 +176,7 @@ describe('QueryStringCollection.createFromObject', () => {
 
         assert.equal(str, '?' + queryString, 'querystring not equal');
 
-        assert.equal(obj[name][name], value, 'obj not equal');
+        assert.equal(obj[name][name], value, `obj not equal '${ JSON.stringify(obj) }'`);
         assert.equal(items[0].name, `${name}.${name}`, 'items name not equal');
         assert.equal(items[0].value, value, 'items value not equal');
         assert.equal(query.item(`${name}.${name}`), value, 'item not equal');
