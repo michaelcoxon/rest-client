@@ -21,6 +21,7 @@ export enum KnownContentTypes
     plainText = "text/plain",
     xml = "text/xml",
     html = "text/html",
+    multipart = "multipart/form-data",
 }
 
 /** Http methods */
