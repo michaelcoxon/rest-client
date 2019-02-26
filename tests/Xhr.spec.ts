@@ -13,23 +13,19 @@ import { JsonRequestContent, StringRequestContent } from '../src/RequestContent'
 //(<any>global).XMLHttpRequest = xhrm.XMLHttpRequest
 
 
-describe('XhrHttpClient', () =>
-{
-    it('constructs', () =>
-    {
+describe('XhrHttpClient', () => {
+    it('constructs', () => {
         const httpClient = new XhrHttpClient();
     });
 
-    it('does basic http get request', async () =>
-    {
+    it('does basic http get request', async () => {
         const httpClient = new XhrHttpClient();
 
         const response = await httpClient
             .createRequest(HttpMethod.get, 'https://httpbin.org/get')
             .executeAsync();
 
-        if (!response)
-        {
+        if (!response) {
             throw new Error('request was cancelled');
         }
 
@@ -45,8 +41,7 @@ describe('XhrHttpClient', () =>
         assert(obj.url === "https://httpbin.org/get");
     });
 
-    it('does basic http get request with basic auth', async () =>
-    {
+    it('does basic http get request with basic auth', async () => {
         const username = 'johndoe';
         const password = 'password';
         const authHandler = new BasicAuthenticationFilter(username, password);
@@ -57,8 +52,7 @@ describe('XhrHttpClient', () =>
             .createRequest(HttpMethod.get, 'https://httpbin.org/get')
             .executeAsync();
 
-        if (!response)
-        {
+        if (!response) {
             throw new Error('request was cancelled');
         }
 
@@ -76,8 +70,7 @@ describe('XhrHttpClient', () =>
         assert(obj.url === "https://httpbin.org/get");
     });
 
-    it('does basic http get request with basic auth 2', async () =>
-    {
+    it('does basic http get request with basic auth 2', async () => {
         const username = 'johndoe';
         const password = 'password';
         const authHandler = new BasicAuthenticationFilter(username, password);
@@ -89,8 +82,7 @@ describe('XhrHttpClient', () =>
             .createRequest(HttpMethod.get, url)
             .executeAsync();
 
-        if (!response)
-        {
+        if (!response) {
             throw new Error('request was cancelled');
         }
 
@@ -107,8 +99,7 @@ describe('XhrHttpClient', () =>
         assert(obj.user === username);
     });
 
-    it('does basic get request with redirects', async () =>
-    {
+    it('does basic get request with redirects', async () => {
         const url = "https://httpbin.org/redirect-to?url=" + encodeURIComponent("https://httpbin.org/get");
         const httpClient = new XhrHttpClient();
 
@@ -116,8 +107,7 @@ describe('XhrHttpClient', () =>
             .createRequest(HttpMethod.get, url)
             .executeAsync();
 
-        if (!response)
-        {
+        if (!response) {
             throw new Error('request was cancelled');
         }
 
@@ -133,10 +123,9 @@ describe('XhrHttpClient', () =>
         assert(obj.url === "https://httpbin.org/get", "url was not correct");
     });
 
-    it('does basic http post request', async () =>
-    {
+    it('does basic http post request', async () => {
         const strContent: string = 'Hello World!';
-        const url = 'http://httpbin.org/post';
+        const url = 'https://httpbin.org/post';
         const httpClient = new XhrHttpClient();
 
         const request = httpClient.createRequest(HttpMethod.post, url);
@@ -144,8 +133,7 @@ describe('XhrHttpClient', () =>
 
         const response = await request.executeAsync();
 
-        if (!response)
-        {
+        if (!response) {
             throw new Error('request was cancelled');
         }
 
@@ -159,7 +147,26 @@ describe('XhrHttpClient', () =>
         const obj = content.toObject<{ url: string, data: string }>();
 
         assert(obj.data, "data is undefined");
-        assert(obj.data === strContent, `content not same: '${JSON.stringify(obj.data)}'`);
-        assert(obj.url === "http://httpbin.org/post", "url was not correct");
+        expect(obj.data).equals(strContent, `content not same: '${JSON.stringify(obj.data)}'`);
+        expect(obj.url).equals("https://httpbin.org/post", "url was not correct");
     });
+
+    it('does basic handle no connection', async () => {
+        const strContent: string = 'Hello World!';
+        const url = 'http://localhost:49998/';
+        const httpClient = new XhrHttpClient();
+
+        const request = httpClient.createRequest(HttpMethod.post, url);
+        request.content = new StringRequestContent(strContent);
+
+        const response = await request.executeAsync();
+
+        if (!response) {
+            throw new Error('request was cancelled');
+        }        
+
+        expect(response.status).equals(0, "status code should be 0");
+        expect(response.ok).is.false;
+    });
+
 });
