@@ -67,6 +67,12 @@ export class XhrHttpRequest implements IHttpRequest
         return this._cancelled;
     }
 
+    public abort(): void
+    {
+        this.xhr.abort();
+        this._cancelled = true;
+    }
+
     public executeAsync(): Promise<IHttpResponse | undefined>
     {
         if (this._executed)
@@ -74,7 +80,10 @@ export class XhrHttpRequest implements IHttpRequest
             throw new InvalidOperationException('Request already executed. Create a new Request');
         }
         this._executed = true;
-
+        if (this._cancelled)
+        {
+            throw new InvalidOperationException('Request already cancelled. Create a new Request');
+        }
         return new Promise(async (resolve, reject) =>
         {
             try
@@ -103,17 +112,33 @@ export class XhrHttpRequest implements IHttpRequest
                     resolve(response);
                 };
 
+                this.xhr.onabort = async evt =>
+                {
+                    const response = this._prepareCancelledResponse();
+                    await response.executeAsync(this, true);
+                    resolve(response);
+                }
+
                 let sent = false;
 
                 //send the content
-                await this.content.executeAsync((data) =>
+                await this.content.executeAsync(async (data) =>
                 {
                     if (sent)
                     {
                         throw new InvalidOperationException("can only call the content writer once");
                     }
                     sent = true;
-                    this.xhr.send(data);
+                    if (!this._cancelled)
+                    {
+                        this.xhr.send(data);
+                    }
+                    else
+                    {
+                        const response = this._prepareCancelledResponse();
+                        await response.executeAsync(this, true);
+                        resolve(response);
+                    }
                 });
             }
             catch (ex)
@@ -191,6 +216,11 @@ export class XhrHttpRequest implements IHttpRequest
     private _prepareErrorResponse(): XhrHttpResponse
     {
         return new XhrErrorHttpResponse('There was a problem with the request', this._filters);
+    }
+
+    private _prepareCancelledResponse(): XhrHttpResponse
+    {
+        return new XhrErrorHttpResponse('The request was cancelled', this._filters);
     }
 
     private _prepareTimeoutResponse(): XhrHttpResponse
@@ -284,7 +314,7 @@ export class XhrHttpResponse implements IHttpResponse
         return this._lazyOk.value;
     }
 
-    public async executeAsync(request: IHttpRequest): Promise<void>
+    public async executeAsync(request: IHttpRequest, cancelled: boolean = false): Promise<void>
     {
         if (!(request instanceof XhrHttpRequest))
         {
@@ -301,7 +331,7 @@ export class XhrHttpResponse implements IHttpResponse
         this._lazyresponseType = new Lazy<HttpResponseType>(() => XhrHttpResponse._mapResponseType(request.xhr.responseType));
         this._lazyContentAsync = new LazyAsync<IHttpResponseContent>(async () => await ResponseContentHandlerCollection.handleAsync(this));
 
-        this._cancelled = await FilterHelpers.applyFiltersToResponseAsync(this, this._filters);
+        this._cancelled = cancelled || await FilterHelpers.applyFiltersToResponseAsync(this, this._filters);
     }
 
 

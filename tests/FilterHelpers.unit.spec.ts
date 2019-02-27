@@ -18,6 +18,7 @@ describe('FilterHelpers.applyFiltersToRequestAsync', () =>
         method: HttpMethod.get,
         uri: new Url(""),
         executeAsync: async () => undefined,
+        abort: () => { }
     }
 
     function getFilters(results: number[]): IHttpFilter[]

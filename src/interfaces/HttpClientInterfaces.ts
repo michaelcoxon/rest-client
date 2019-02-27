@@ -175,6 +175,8 @@ export interface IHttpRequest
     content: IHttpRequestContent;
     /** Executes the request and returns the promise of an IHttpResponse */
     executeAsync(): Promise<IHttpResponse | undefined>;
+    /** Aborts the request */
+    abort(): void;
 }
 
 /** The Http Client used to make requests */

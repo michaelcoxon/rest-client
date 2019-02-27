@@ -227,7 +227,6 @@ describe('XhrHttpClient', function ()
         expect(obj.url).equals("https://httpbin.org/post", "url was not correct");
     });
 
-
     it('does basic handle no connection', async () =>
     {
         const strContent: string = 'Hello World!';
