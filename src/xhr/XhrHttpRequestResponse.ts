@@ -1,12 +1,10 @@
 ﻿import { IHttpRequest, IHttpFilter, IHttpRequestHeaderCollection, IHttpResponse, IHttpRequestContent, IHttpResponseHeaderCollection, IHttpResponseContent, IErrorHttpResponse } from '../interfaces/HttpClientInterfaces';
 import { HttpMethod, HttpStatusCode, HttpResponseType, KnownHeaderNames } from '../interfaces/HttpClientEnums';
-import { HttpRequestHeaderCollection } from '../HttpRequestHeaderCollection';
 import { HttpResponseHeaderCollection } from '../HttpResponseHeaderCollection';
 import { InvalidOperationException } from '../Exceptions';
 import { EmptyRequestContent } from '../RequestContent';
-import { Lazy, LazyAsync, Strings, NotSupportedException, ArgumentException } from '@michaelcoxon/utilities';
+import { Lazy, LazyAsync, Strings, NotSupportedException, ArgumentException, Url, StringOrUrl, stringOrUrlToUrl } from '@michaelcoxon/utilities';
 import { ResponseContentHandlerCollection } from '../ResponseContentHandlers';
-import { Url, stringOrUrlToUrl, StringOrUrl } from '../Url';
 import { HeaderHelpers } from '../helpers/HeaderHelpers';
 import { FilterHelpers } from '../helpers/FilterHelpers';
 

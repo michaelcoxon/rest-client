@@ -2,10 +2,10 @@
 import { HttpMethod, KnownHeaderNames } from '../interfaces/HttpClientEnums';
 import { XhrHttpRequest, XhrHttpResponse } from './XhrHttpRequestResponse';
 import { JsonResponseContent } from '../ResponseContent';
-import { StringOrUrl, Url } from '../Url';
 import { HttpRequestHeaderCollection } from '../HttpRequestHeaderCollection';
 import { RequestCancelledException, ServiceException } from '../Exceptions';
 import { JsonRequestContent } from '../RequestContent';
+import { StringOrUrl, Url } from '@michaelcoxon/utilities';
 
 
 /** Implementation of IHttpClient for XMLHttpRequest */

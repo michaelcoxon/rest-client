@@ -1,6 +1,5 @@
 ﻿import { HttpStatusCode, HttpMethod, HttpContentEncoding, HttpResponseType, KnownContentTypes } from './HttpClientEnums';
-import { Promisable } from '@michaelcoxon/utilities';
-import { Url, StringOrUrl } from '../Url';
+import { Promisable, Url, StringOrUrl } from '@michaelcoxon/utilities';
 
 /** The value of a HTTP header */
 export type HttpHeaderValue = string | number | string[] | undefined;

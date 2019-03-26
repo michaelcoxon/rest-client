@@ -3,10 +3,10 @@ import 'mocha';
 
 import { FilterHelpers } from '../src/helpers/FilterHelpers';
 import { IHttpFilter, IHttpRequest } from '../src/interfaces/HttpClientInterfaces';
-import { Promises } from '@michaelcoxon/utilities';
+import { Promises, Url } from '@michaelcoxon/utilities';
 import { EmptyRequestContent } from '../src/RequestContent';
 import { HttpRequestHeaderCollection } from '../src/HttpRequestHeaderCollection';
-import { HttpMethod, Url } from '../src';
+import { HttpMethod } from '../src';
 
 
 

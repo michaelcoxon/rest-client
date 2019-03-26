@@ -164,9 +164,6 @@
       <TestFramework>Mocha</TestFramework>
     </TypeScriptCompile>
     <TypeScriptCompile Include="tests\index.ts" />
-    <TypeScriptCompile Include="tests\QueryStringCollection.unit.spec.ts">
-      <TestFramework>Mocha</TestFramework>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="tests\Xhr.spec.ts">
       <TestFramework>
       </TestFramework>
