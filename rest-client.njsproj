@@ -143,7 +143,6 @@
     <TypeScriptCompile Include="src\filters\BasicAuthenticationFilter.ts" />
     <TypeScriptCompile Include="src\helpers\FilterHelpers.ts" />
     <TypeScriptCompile Include="src\helpers\HeaderHelpers.ts" />
-    <TypeScriptCompile Include="src\helpers\QueryStringHelper.ts" />
     <TypeScriptCompile Include="src\HttpContentHeaderCollection.ts" />
     <TypeScriptCompile Include="src\HttpResponseHeaderCollection.ts" />
     <TypeScriptCompile Include="src\index.ts" />
@@ -151,7 +150,6 @@
     <TypeScriptCompile Include="src\RequestContent.ts" />
     <TypeScriptCompile Include="src\ResponseContent.ts" />
     <TypeScriptCompile Include="src\Types.ts" />
-    <TypeScriptCompile Include="src\Url.ts" />
     <TypeScriptCompile Include="src\xhr\XhrHttpClient.ts" />
     <TypeScriptCompile Include="src\interfaces\HttpClientEnums.ts" />
     <TypeScriptCompile Include="src\interfaces\HttpClientInterfaces.ts" />

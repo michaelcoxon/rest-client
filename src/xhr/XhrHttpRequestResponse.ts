@@ -91,6 +91,9 @@ export class XhrHttpRequest implements IHttpRequest
                 // prepare the request
                 await this._prepareRequestAsync();
 
+                //
+                // add the events to handle all the issues/successes
+                //
                 this.xhr.onload = async evt =>
                 {
                     const response = this._prepareResponse();
