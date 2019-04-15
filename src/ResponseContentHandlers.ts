@@ -1,7 +1,7 @@
 ﻿import { IHttpResponseContentHandler, IHttpResponse, IHttpResponseContent } from './interfaces/HttpClientInterfaces';
 import { ArgumentException } from '@michaelcoxon/utilities';
 import { JsonResponseContent, PlainTextResponseContent } from './ResponseContent';
-import { HttpResponseType, KnownContentTypes, KnownHeaderNames } from './interfaces/HttpClientEnums';
+import { HttpResponseType, KnownContentTypes, KnownHeaderNames, HttpStatusCode } from './interfaces/HttpClientEnums';
 
 
 
@@ -89,6 +89,11 @@ export class NoContentResponseContentHandler implements IHttpResponseContentHand
 {
     public async canHandleAsync(response: IHttpResponse): Promise<boolean>
     {
+        if (response.status === HttpStatusCode.noContent)
+        {
+            return true;
+        }
+
         const contentLength = response.headers.get(KnownHeaderNames.contentLength);
 
         if (contentLength !== undefined)
@@ -143,6 +148,7 @@ const defaultHandlers: IHttpResponseContentHandler[] =
     [
         new JsonResponseContentHandler(),
         new PlainTextResponseContentHandler(),
+        new NoContentResponseContentHandler(),
     ];
 
 ResponseContentHandlerCollection.setHandlers(defaultHandlers);

@@ -130,6 +130,7 @@
     <Folder Include="src\interfaces\" />
     <Folder Include="src\helpers\" />
     <Folder Include="src\filters\" />
+    <Folder Include="src\decorators\" />
     <Folder Include="src\xhr\" />
     <Folder Include="tests\" />
   </ItemGroup>
@@ -147,8 +148,10 @@
     <TypeScriptCompile Include="src\HttpResponseHeaderCollection.ts" />
     <TypeScriptCompile Include="src\index.ts" />
     <TypeScriptCompile Include="src\Exceptions.ts" />
+    <TypeScriptCompile Include="src\interfaces\IRestService.ts" />
     <TypeScriptCompile Include="src\RequestContent.ts" />
     <TypeScriptCompile Include="src\ResponseContent.ts" />
+    <TypeScriptCompile Include="src\RestService.ts" />
     <TypeScriptCompile Include="src\Types.ts" />
     <TypeScriptCompile Include="src\xhr\XhrHttpClient.ts" />
     <TypeScriptCompile Include="src\interfaces\HttpClientEnums.ts" />
@@ -164,6 +167,7 @@
       <TestFramework>Mocha</TestFramework>
     </TypeScriptCompile>
     <TypeScriptCompile Include="tests\index.ts" />
+    <TypeScriptCompile Include="tests\RestService.spec.ts" />
     <TypeScriptCompile Include="tests\Xhr.spec.ts">
       <TestFramework>
       </TestFramework>
