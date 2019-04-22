@@ -13,6 +13,7 @@ interface HttpBinResponse<TData = undefined>
     user: string,
     url: string,
     data: TData,
+    form: TData,
     headers:
     {
         Authorization: string,
@@ -27,6 +28,7 @@ export class MyRestService extends RestService
     basicHttpGetRequestWithRedirectsAsync = httpGet<HttpBinResponse>(this, "https://httpbin.org/redirect-to?url=" + encodeURIComponent("https://httpbin.org/get"));
 
     basicHttpPostStringRequestAsync = httpPost<HttpBinResponse<string>, StringRequestContent>(this, 'https://httpbin.org/post');
+    basicHttpPostMultipartRequestAsync = httpPost<HttpBinResponse<{ myString: string }>, MultipartRequestContent<{ myString: string }>>(this, 'https://httpbin.org/post');
 }
 
 
@@ -92,7 +94,6 @@ describe('RestService', function ()
     it('does basic http post request', async () =>
     {
         const strContent: string = 'Hello World!';
-        const url = 'https://httpbin.org/post';
         const restService = new MyRestService(new XhrHttpClient());
 
         const obj = await restService.basicHttpPostStringRequestAsync(new StringRequestContent(strContent));
@@ -105,27 +106,9 @@ describe('RestService', function ()
     it('does basic multipart http post request', async () =>
     {
         const postContent = { myString: 'Hello World!' };
-        const url = 'https://httpbin.org/post';
-        const httpClient = new XhrHttpClient();
+        const restService = new MyRestService(new XhrHttpClient());
 
-        const request = httpClient.createRequest(HttpMethod.post, url);
-        request.content = new MultipartRequestContent(postContent);
-
-        const response = await request.executeAsync();
-
-        if (!response)
-        {
-            throw new Error('request was cancelled');
-        }
-
-        assert(response.status == HttpStatusCode.ok, "status code should be 200");
-        assert(response.ok, "ok should be true");
-
-        const content = (await response.contentAsync) as JsonResponseContent;
-
-        assert(content instanceof JsonResponseContent, "content should be json");
-
-        const obj = content.toObject<{ url: string, form: { [key: string]: any } }>();
+        const obj = await restService.basicHttpPostMultipartRequestAsync(new MultipartRequestContent(postContent));
 
         assert(obj.form, "form is undefined");
         expect(obj.form.myString).equals(postContent.myString, `content not same: '${JSON.stringify(obj.form.myString)}'`);
