@@ -1,20 +1,21 @@
 ﻿import { expect, assert } from 'chai';
 import 'mocha';
 
-
+import { HttpMethod, HttpStatusCode } from '../src/interfaces/HttpClientEnums';
 import { XhrHttpClient } from '../src/xhr/XhrHttpClient';
-import { RestService, httpGet } from '../src/RestService';
-import { BasicAuthenticationFilter } from '../src';
+import { RestService, httpGet, httpPost } from '../src/RestService';
+import { BasicAuthenticationFilter, JsonResponseContent, StringRequestContent, MultipartRequestContent, IHttpFilter } from '../src';
 
 
-interface HttpBinResponse
+interface HttpBinResponse<TData = undefined>
 {
     authenticated: boolean,
-    user:string,
+    user: string,
     url: string,
+    data: TData,
     headers:
     {
-        Authorization:string,
+        Authorization: string,
     }
 }
 
@@ -23,6 +24,9 @@ export class MyRestService extends RestService
 {
     basicHttpGetRequestAsync = httpGet<HttpBinResponse>(this, 'https://httpbin.org/get');
     basicHttpGetRequestWithBasicAuth2Async = httpGet<HttpBinResponse>(this, 'https://httpbin.org/basic-auth/johndoe/password');
+    basicHttpGetRequestWithRedirectsAsync = httpGet<HttpBinResponse>(this, "https://httpbin.org/redirect-to?url=" + encodeURIComponent("https://httpbin.org/get"));
+
+    basicHttpPostStringRequestAsync = httpPost<HttpBinResponse<string>, StringRequestContent>(this, 'https://httpbin.org/post');
 }
 
 
@@ -35,6 +39,7 @@ describe('RestService', function ()
     it('constructs', () =>
     {
         const restService = new MyRestService(new XhrHttpClient());
+        assert.isNotNull(restService);
     });
 
     it('does basic http get request', async () =>
@@ -77,26 +82,9 @@ describe('RestService', function ()
 
     it('does basic get request with redirects', async () =>
     {
-        const url = "https://httpbin.org/redirect-to?url=" + encodeURIComponent("https://httpbin.org/get");
-        const httpClient = new XhrHttpClient();
+        const restService = new MyRestService(new XhrHttpClient());
 
-        const response = await httpClient
-            .createRequest(HttpMethod.get, url)
-            .executeAsync();
-
-        if (!response)
-        {
-            throw new Error('request was cancelled');
-        }
-
-        assert(response.status == HttpStatusCode.ok, "status code should be 200");
-        assert(response.ok, "ok should be true");
-
-        const content = (await response.contentAsync) as JsonResponseContent;
-
-        assert(content instanceof JsonResponseContent, "content should be json");
-
-        const obj = content.toObject<{ url: string }>();
+        const obj = await restService.basicHttpGetRequestWithRedirectsAsync()
 
         assert(obj.url === "https://httpbin.org/get", "url was not correct");
     });
@@ -105,26 +93,9 @@ describe('RestService', function ()
     {
         const strContent: string = 'Hello World!';
         const url = 'https://httpbin.org/post';
-        const httpClient = new XhrHttpClient();
+        const restService = new MyRestService(new XhrHttpClient());
 
-        const request = httpClient.createRequest(HttpMethod.post, url);
-        request.content = new StringRequestContent(strContent);
-
-        const response = await request.executeAsync();
-
-        if (!response)
-        {
-            throw new Error('request was cancelled');
-        }
-
-        assert(response.status == HttpStatusCode.ok, "status code should be 200");
-        assert(response.ok, "ok should be true");
-
-        const content = (await response.contentAsync) as JsonResponseContent;
-
-        assert(content instanceof JsonResponseContent, "content should be json");
-
-        const obj = content.toObject<{ url: string, data: string }>();
+        const obj = await restService.basicHttpPostStringRequestAsync(new StringRequestContent(strContent));
 
         assert(obj.data, "data is undefined");
         expect(obj.data).equals(strContent, `content not same: '${JSON.stringify(obj.data)}'`);
