@@ -22,6 +22,8 @@
     <LaunchUrl>/tests/index.htm</LaunchUrl>
     <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+    <JavaScriptTestFramework>mocha</JavaScriptTestFramework>
+    <JavaScriptTestRoot>tests\</JavaScriptTestRoot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -29,6 +31,8 @@
     <Content Include=".gitignore" />
     <Content Include=".nojekyll" />
     <Content Include=".npmignore" />
+    <Content Include=".nycrc" />
+    <Content Include="base-tsconfig.json" />
     <Content Include="docs\.nojekyll" />
     <Content Include="docs\assets\css\main.css" />
     <Content Include="docs\assets\css\main.css.map" />
@@ -104,10 +108,11 @@
     <Content Include="LICENSE" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Content Include="src\config\es2015\tsconfig.json" />
+    <Content Include="src\config\esnext\tsconfig.json" />
     <Content Include="src\config\es5\tsconfig.json" />
     <Content Include="src\config\es6\tsconfig.json" />
     <Content Include="tests\index.htm" />
+    <Content Include="tests\mocha.opts" />
     <Content Include="tests\tsconfig.json" />
     <Content Include="tsconfig.json" />
     <Content Include="_config.yml" />
@@ -124,7 +129,7 @@
     <Folder Include="docs\modules\" />
     <Folder Include="src\" />
     <Folder Include="src\config\" />
-    <Folder Include="src\config\es2015\" />
+    <Folder Include="src\config\esnext\" />
     <Folder Include="src\config\es5\" />
     <Folder Include="src\config\es6\" />
     <Folder Include="src\interfaces\" />

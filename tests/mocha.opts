@@ -1,0 +1,5 @@
+﻿--require ts-node/register
+--require source-map-support/register
+--require @babel/runtime/regenerator
+--recursive
+**/*.unit.spec.ts

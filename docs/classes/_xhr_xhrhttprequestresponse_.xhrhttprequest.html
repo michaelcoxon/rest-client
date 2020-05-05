@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>XhrHttpRequest | @michaelcoxon/rest-client</title>
+	<title>XhrHttpRequest | @michaelcoxon/rest-client - v1.6.0</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@michaelcoxon/rest-client</a>
+					<a href="../index.html" class="title">@michaelcoxon/rest-client - v1.6.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -117,11 +117,13 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#_preparecancelledresponse" class="tsd-kind-icon">_prepare<wbr>Cancelled<wbr>Response</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#_prepareerrorresponse" class="tsd-kind-icon">_prepare<wbr>Error<wbr>Response</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#_preparerequestasync" class="tsd-kind-icon">_prepare<wbr>Request<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#_prepareresponse" class="tsd-kind-icon">_prepare<wbr>Response</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#_preparetimeoutresponse" class="tsd-kind-icon">_prepare<wbr>Timeout<wbr>Response</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#_setheaders" class="tsd-kind-icon">_set<wbr>Headers</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#abort" class="tsd-kind-icon">abort</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#executeasync" class="tsd-kind-icon">execute<wbr>Async</a></li>
 							</ul>
 						</section>
@@ -134,13 +136,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Xhr<wbr>Http<wbr>Request<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><a href="../enums/_interfaces_httpclientenums_.httpmethod.html" class="tsd-signature-type">HttpMethod</a>, uri<span class="tsd-signature-symbol">: </span><a href="../modules/_url_.html#stringorurl" class="tsd-signature-type">StringOrUrl</a>, filters<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_interfaces_httpclientinterfaces_.ihttpfilter.html" class="tsd-signature-type">IHttpFilter</a><span class="tsd-signature-symbol">[]</span>, headers<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequestheadercollection.html" class="tsd-signature-type">IHttpRequestHeaderCollection</a>, ignoreCache<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, timeout<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html" class="tsd-signature-type">XhrHttpRequest</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Xhr<wbr>Http<wbr>Request<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><a href="../enums/_interfaces_httpclientenums_.httpmethod.html" class="tsd-signature-type">HttpMethod</a>, uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">StringOrUrl</span>, filters<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_interfaces_httpclientinterfaces_.ihttpfilter.html" class="tsd-signature-type">IHttpFilter</a><span class="tsd-signature-symbol">[]</span>, headers<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequestheadercollection.html" class="tsd-signature-type">IHttpRequestHeaderCollection</a>, ignoreCache<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, timeout<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html" class="tsd-signature-type">XhrHttpRequest</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L34">xhr/XhrHttpRequestResponse.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L32">src/xhr/XhrHttpRequestResponse.ts:32</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -149,7 +151,7 @@
 									<h5>method: <a href="../enums/_interfaces_httpclientenums_.httpmethod.html" class="tsd-signature-type">HttpMethod</a></h5>
 								</li>
 								<li>
-									<h5>uri: <a href="../modules/_url_.html#stringorurl" class="tsd-signature-type">StringOrUrl</a></h5>
+									<h5>uri: <span class="tsd-signature-type">StringOrUrl</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> filters: <a href="../interfaces/_interfaces_httpclientinterfaces_.ihttpfilter.html" class="tsd-signature-type">IHttpFilter</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></h5>
@@ -177,7 +179,7 @@
 					<div class="tsd-signature tsd-kind-icon">_cancelled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L23">xhr/XhrHttpRequestResponse.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L21">src/xhr/XhrHttpRequestResponse.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -192,7 +194,7 @@
 					<div class="tsd-signature tsd-kind-icon">_executed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L27">xhr/XhrHttpRequestResponse.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L25">src/xhr/XhrHttpRequestResponse.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -207,7 +209,7 @@
 					<div class="tsd-signature tsd-kind-icon">_filters<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_httpclientinterfaces_.ihttpfilter.html" class="tsd-signature-type">IHttpFilter</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L17">xhr/XhrHttpRequestResponse.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L15">src/xhr/XhrHttpRequestResponse.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -217,7 +219,7 @@
 					<div class="tsd-signature tsd-kind-icon">_prepared<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L25">xhr/XhrHttpRequestResponse.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L23">src/xhr/XhrHttpRequestResponse.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -232,7 +234,7 @@
 					<div class="tsd-signature tsd-kind-icon">_timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L18">xhr/XhrHttpRequestResponse.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L16">src/xhr/XhrHttpRequestResponse.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -243,7 +245,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequest.html">IHttpRequest</a>.<a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequest.html#content">content</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L34">xhr/XhrHttpRequestResponse.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L32">src/xhr/XhrHttpRequestResponse.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -254,7 +256,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequest.html">IHttpRequest</a>.<a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequest.html#headers">headers</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L29">xhr/XhrHttpRequestResponse.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L27">src/xhr/XhrHttpRequestResponse.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -265,18 +267,18 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequest.html">IHttpRequest</a>.<a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequest.html#method">method</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L30">xhr/XhrHttpRequestResponse.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L28">src/xhr/XhrHttpRequestResponse.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="uri" class="tsd-anchor"></a>
 					<h3>uri</h3>
-					<div class="tsd-signature tsd-kind-icon">uri<span class="tsd-signature-symbol">:</span> <a href="_url_.url.html" class="tsd-signature-type">Url</a></div>
+					<div class="tsd-signature tsd-kind-icon">uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Url</span></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequest.html">IHttpRequest</a>.<a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequest.html#uri">uri</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L31">xhr/XhrHttpRequestResponse.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L29">src/xhr/XhrHttpRequestResponse.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -286,7 +288,7 @@
 					<div class="tsd-signature tsd-kind-icon">xhr<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">XMLHttpRequest</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L32">xhr/XhrHttpRequestResponse.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L30">src/xhr/XhrHttpRequestResponse.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -303,7 +305,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L65">xhr/XhrHttpRequestResponse.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L63">src/xhr/XhrHttpRequestResponse.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -319,6 +321,23 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="_preparecancelledresponse" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _prepare<wbr>Cancelled<wbr>Response</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">_prepare<wbr>Cancelled<wbr>Response<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_xhr_xhrhttprequestresponse_.xhrhttpresponse.html" class="tsd-signature-type">XhrHttpResponse</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L257">src/xhr/XhrHttpRequestResponse.ts:257</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_xhr_xhrhttprequestresponse_.xhrhttpresponse.html" class="tsd-signature-type">XhrHttpResponse</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="_prepareerrorresponse" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _prepare<wbr>Error<wbr>Response</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
@@ -328,7 +347,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L191">xhr/XhrHttpRequestResponse.ts:191</a></li>
+									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L252">src/xhr/XhrHttpRequestResponse.ts:252</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_xhr_xhrhttprequestresponse_.xhrhttpresponse.html" class="tsd-signature-type">XhrHttpResponse</a></h4>
@@ -345,7 +364,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L126">xhr/XhrHttpRequestResponse.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L187">src/xhr/XhrHttpRequestResponse.ts:187</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -362,7 +381,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L186">xhr/XhrHttpRequestResponse.ts:186</a></li>
+									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L247">src/xhr/XhrHttpRequestResponse.ts:247</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_xhr_xhrhttprequestresponse_.xhrhttpresponse.html" class="tsd-signature-type">XhrHttpResponse</a></h4>
@@ -379,7 +398,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L196">xhr/XhrHttpRequestResponse.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L262">src/xhr/XhrHttpRequestResponse.ts:262</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_xhr_xhrhttprequestresponse_.xhrhttpresponse.html" class="tsd-signature-type">XhrHttpResponse</a></h4>
@@ -396,7 +415,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L155">xhr/XhrHttpRequestResponse.ts:155</a></li>
+									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L216">src/xhr/XhrHttpRequestResponse.ts:216</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="abort" class="tsd-anchor"></a>
+					<h3>abort</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">abort<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequest.html">IHttpRequest</a>.<a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequest.html#abort">abort</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L68">src/xhr/XhrHttpRequestResponse.ts:68</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -414,7 +451,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequest.html">IHttpRequest</a>.<a href="../interfaces/_interfaces_httpclientinterfaces_.ihttprequest.html#executeasync">executeAsync</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/6f7f7f0/src/xhr/XhrHttpRequestResponse.ts#L70">xhr/XhrHttpRequestResponse.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/michaelcoxon/rest-client/blob/a46b78e/src/xhr/XhrHttpRequestResponse.ts#L74">src/xhr/XhrHttpRequestResponse.ts:74</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_interfaces_httpclientinterfaces_.ihttpresponse.html" class="tsd-signature-type">IHttpResponse</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -430,61 +467,55 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_exceptions_.html">"<wbr>Exceptions"</a>
+						<a href="../modules/_exceptions_.html">&quot;<wbr>Exceptions&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_headercollection_.html">"<wbr>Header<wbr>Collection"</a>
+						<a href="../modules/_headercollection_.html">&quot;<wbr>Header<wbr>Collection&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_httpcontentheadercollection_.html">"<wbr>Http<wbr>Content<wbr>Header<wbr>Collection"</a>
+						<a href="../modules/_httpcontentheadercollection_.html">&quot;<wbr>Http<wbr>Content<wbr>Header<wbr>Collection&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_httprequestheadercollection_.html">"<wbr>Http<wbr>Request<wbr>Header<wbr>Collection"</a>
+						<a href="../modules/_httprequestheadercollection_.html">&quot;<wbr>Http<wbr>Request<wbr>Header<wbr>Collection&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_httpresponseheadercollection_.html">"<wbr>Http<wbr>Response<wbr>Header<wbr>Collection"</a>
+						<a href="../modules/_httpresponseheadercollection_.html">&quot;<wbr>Http<wbr>Response<wbr>Header<wbr>Collection&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_requestcontent_.html">"<wbr>Request<wbr>Content"</a>
+						<a href="../modules/_requestcontent_.html">&quot;<wbr>Request<wbr>Content&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_responsecontent_.html">"<wbr>Response<wbr>Content"</a>
+						<a href="../modules/_responsecontent_.html">&quot;<wbr>Response<wbr>Content&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_responsecontenthandlers_.html">"<wbr>Response<wbr>Content<wbr>Handlers"</a>
+						<a href="../modules/_responsecontenthandlers_.html">&quot;<wbr>Response<wbr>Content<wbr>Handlers&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_types_.html">"<wbr>Types"</a>
+						<a href="../modules/_types_.html">&quot;<wbr>Types&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_url_.html">"<wbr>Url"</a>
+						<a href="../modules/_filters_basicauthenticationfilter_.html">&quot;filters/<wbr>Basic<wbr>Authentication<wbr>Filter&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_filters_basicauthenticationfilter_.html">"filters/<wbr>Basic<wbr>Authentication<wbr>Filter"</a>
+						<a href="../modules/_helpers_filterhelpers_.html">&quot;helpers/<wbr>Filter<wbr>Helpers&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_filterhelpers_.html">"helpers/<wbr>Filter<wbr>Helpers"</a>
+						<a href="../modules/_helpers_headerhelpers_.html">&quot;helpers/<wbr>Header<wbr>Helpers&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_headerhelpers_.html">"helpers/<wbr>Header<wbr>Helpers"</a>
+						<a href="../modules/_index_.html">&quot;index&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_helpers_querystringhelper_.html">"helpers/<wbr>Query<wbr>String<wbr>Helper"</a>
+						<a href="../modules/_interfaces_httpclientenums_.html">&quot;interfaces/<wbr>Http<wbr>Client<wbr>Enums&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
+						<a href="../modules/_interfaces_httpclientinterfaces_.html">&quot;interfaces/<wbr>Http<wbr>Client<wbr>Interfaces&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_interfaces_httpclientenums_.html">"interfaces/<wbr>Http<wbr>Client<wbr>Enums"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_interfaces_httpclientinterfaces_.html">"interfaces/<wbr>Http<wbr>Client<wbr>Interfaces"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xhr_xhrhttpclient_.html">"xhr/<wbr>Xhr<wbr>Http<wbr>Client"</a>
+						<a href="../modules/_xhr_xhrhttpclient_.html">&quot;xhr/<wbr>Xhr<wbr>Http<wbr>Client&quot;</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_xhr_xhrhttprequestresponse_.html">"xhr/<wbr>Xhr<wbr>Http<wbr>Request<wbr>Response"</a>
+						<a href="../modules/_xhr_xhrhttprequestresponse_.html">&quot;xhr/<wbr>Xhr<wbr>Http<wbr>Request<wbr>Response&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -535,6 +566,9 @@
 								<a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#cancelled" class="tsd-kind-icon">cancelled</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#_preparecancelledresponse" class="tsd-kind-icon">_prepare<wbr>Cancelled<wbr>Response</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#_prepareerrorresponse" class="tsd-kind-icon">_prepare<wbr>Error<wbr>Response</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
@@ -548,6 +582,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#_setheaders" class="tsd-kind-icon">_set<wbr>Headers</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#abort" class="tsd-kind-icon">abort</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_xhr_xhrhttprequestresponse_.xhrhttprequest.html#executeasync" class="tsd-kind-icon">execute<wbr>Async</a>
@@ -579,6 +616,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -627,7 +665,7 @@
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>

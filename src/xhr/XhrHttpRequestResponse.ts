@@ -94,30 +94,58 @@ export class XhrHttpRequest implements IHttpRequest
                 //
                 this.xhr.onload = async evt =>
                 {
-                    const response = this._prepareResponse();
-                    await response.executeAsync(this);
-                    resolve(response);
+                    try
+                    {
+                        const response = this._prepareResponse();
+                        await response.executeAsync(this);
+                        resolve(response);
+                    }
+                    catch (e)
+                    {
+                        reject(e);
+                    }
                 };
 
                 this.xhr.onerror = async evt =>
                 {
-                    const response = this._prepareErrorResponse();
-                    await response.executeAsync(this);
-                    resolve(response);
+                    try
+                    {
+                        const response = this._prepareErrorResponse();
+                        await response.executeAsync(this);
+                        resolve(response);
+                    }
+                    catch (e)
+                    {
+                        reject(e);
+                    }
                 };
 
                 this.xhr.ontimeout = async evt =>
                 {
-                    const response = this._prepareTimeoutResponse();
-                    await response.executeAsync(this);
-                    resolve(response);
+                    try
+                    {
+                        const response = this._prepareTimeoutResponse();
+                        await response.executeAsync(this);
+                        resolve(response);
+                    }
+                    catch (e)
+                    {
+                        reject(e);
+                    }
                 };
 
                 this.xhr.onabort = async evt =>
                 {
-                    const response = this._prepareCancelledResponse();
-                    await response.executeAsync(this, true);
-                    resolve(response);
+                    try
+                    {
+                        const response = this._prepareCancelledResponse();
+                        await response.executeAsync(this, true);
+                        resolve(response);
+                    }
+                    catch (e)
+                    {
+                        reject(e);
+                    }
                 }
 
                 let sent = false;
@@ -136,9 +164,16 @@ export class XhrHttpRequest implements IHttpRequest
                     }
                     else
                     {
-                        const response = this._prepareCancelledResponse();
-                        await response.executeAsync(this, true);
-                        resolve(response);
+                        try
+                        {
+                            const response = this._prepareCancelledResponse();
+                            await response.executeAsync(this, true);
+                            resolve(response);
+                        }
+                        catch (e)
+                        {
+                            reject(e);
+                        }
                     }
                 });
             }

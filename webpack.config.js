@@ -57,7 +57,15 @@ module.exports = () =>
                 {
                     test: /\.ts$/,
                     include: /src/,
-                    use: 'awesome-typescript-loader?configFileName=./src/config/es5/tsconfig.json'
+                    use: [
+                        {
+                            loader: 'babel-loader',
+                            options: {
+                                presets: ['@babel/preset-env']
+                                //plugins: ['@babel/plugin-transform-runtime']
+                            }
+                        }, 'awesome-typescript-loader?configFileName=./src/config/esnext/tsconfig.json'
+                    ]
                 }
             ]
         },

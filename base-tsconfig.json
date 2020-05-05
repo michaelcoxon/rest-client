@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"noImplicitAny": false,
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"noEmitOnError": true,
+		"noEmitHelpers": true,
+		"importHelpers": true,
+		"removeComments": false,
+		"sourceMap": true,
+		"skipDefaultLibCheck": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"lib": [ "esnext", "dom" ],
+		"target": "es5",
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"pretty": true
+	},
+
+	"compileOnSave": true,
+	"exclude": [
+		"node_modules"
+	]
+}

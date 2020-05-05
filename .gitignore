@@ -71,6 +71,7 @@ dist/
 lib/
 lib.es6/
 lib.es2015/
+lib.es5/
 tests/**/*.js
 tests/**/*.js.map
 src/**/*.js

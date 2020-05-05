@@ -1,33 +1,13 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "baseUrl": ".",
-    "noImplicitAny": false,
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "noEmitOnError": true,
-    "removeComments": false,
-    "sourceMap": true,
-    "skipDefaultLibCheck": true,
-    "strict": true,
-    "lib": [
-      "es6",
-      "es2015",
-      "dom"
-    ],
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "pretty": true,
-    "importHelpers": true,
-    "outDir": "../../../lib",
-    "declaration": true,
-    "declarationDir": "../../../lib",
+    "outDir": "../../../lib.es5",
+    "declaration": false,
     "target": "es5"
   },
   "include": [
     "../../../src/**/*"
   ],
-  "exclude": [
-    "src/index.ts"
-  ]
+  "exclude": [ "../../../src/**/index.ts" ],
+  "extends": "../../../base-tsconfig"
 }

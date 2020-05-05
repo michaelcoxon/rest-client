@@ -1,0 +1,15 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "outDir": "../../../lib",
+    "declaration": true,
+    "declarationDir": "../../../lib",
+    "target": "esnext"
+  },
+  "include": [
+    "../../../src/**/*"
+  ],
+  // comment out on the lib build "exclude": [ "../../../src/**/index.ts" ],
+
+  "extends": "../../../base-tsconfig"
+}
